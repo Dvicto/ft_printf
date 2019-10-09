@@ -8,25 +8,25 @@ char    *ints(t_flags flags, int num)
 	c = " ";
 	numm = ft_itoa(num);
 	if (flags.plus == 1 && numm[0] != '-')
-		numm = add_start_str(numm, "+");
+		numm = add_start_str(&numm, "+");
 	if (flags.space == 1 && numm[0] != '-')
-		numm = add_start_str(numm, " ");
+		numm = add_start_str(&numm, " ");
 	if (flags.precision > ft_strlen(numm))
 	{
 		while(flags.precision != ft_strlen(numm))
-			numm = add_start_str(numm, "0");
+			numm = add_start_str(&numm, "0");
 	}
 	if (flags.width > ft_strlen(numm) && flags.minus != 1)
 	{
 		if (flags.zero == 1)
 			c = "0";
 		while (flags.width != ft_strlen(numm))
-			numm = add_start_str(numm, c);
+			numm = add_start_str(&numm, c);
 	}
 	if (flags.width > ft_strlen(numm) && flags.minus == 1)
 	{	
 		while (flags.width != ft_strlen(numm))
-			numm = add_start_str(" ", numm);
+			numm = add_start_str(" ", &numm);
 	}
 	if (flags.precision < ft_strlen(numm))
 	{
@@ -37,7 +37,84 @@ char    *ints(t_flags flags, int num)
 		numm = str_cut(numm, (int)ft_strlen(numm) - flags.precision)
 	}
 }
-char	*str_cut(char *str, int n)
+
+char    *ints(t_flags flags, long long num)
+{
+	char	*numm;
+	char	c;
+
+	c = " ";
+	numm = ft_llitoa(num);
+	if (flags.plus == 1 && numm[0] != '-')
+		numm = add_start_str(&numm, "+");
+	if (flags.space == 1 && numm[0] != '-')
+		numm = add_start_str(&numm, " ");
+	if (flags.precision > ft_strlen(numm))
+	{
+		while(flags.precision != ft_strlen(numm))
+			numm = add_start_str(&numm, "0");
+	}
+	if (flags.width > ft_strlen(numm) && flags.minus != 1)
+	{
+		if (flags.zero == 1)
+			c = "0";
+		while (flags.width != ft_strlen(numm))
+			numm = add_start_str(&numm, c);
+	}
+	if (flags.width > ft_strlen(numm) && flags.minus == 1)
+	{	
+		while (flags.width != ft_strlen(numm))
+			numm = add_start_str(" ", &numm);
+	}
+	if (flags.precision < ft_strlen(numm))
+	{
+		numm = str_cut(numm, (int)ft_strlen(numm) - flags.precision)
+	}
+	if (flags.width < ft_strlen(numm))
+	{
+		numm = str_cut(numm, (int)ft_strlen(numm) - flags.precision)
+	}
+}
+
+char    *ints(t_flags flags, long num)
+{
+	char	*numm;
+	char	c;
+
+	c = " ";
+	numm = ft_litoa(num);
+	if (flags.plus == 1 && numm[0] != '-')
+		numm = add_start_str(&numm, "+");
+	if (flags.space == 1 && numm[0] != '-')
+		numm = add_start_str(&numm, " ");
+	if (flags.precision > ft_strlen(numm))
+	{
+		while(flags.precision != ft_strlen(numm))
+			numm = add_start_str(&numm, "0");
+	}
+	if (flags.width > ft_strlen(numm) && flags.minus != 1)
+	{
+		if (flags.zero == 1)
+			c = "0";
+		while (flags.width != ft_strlen(numm))
+			numm = add_start_str(&numm, c);
+	}
+	if (flags.width > ft_strlen(numm) && flags.minus == 1)
+	{	
+		while (flags.width != ft_strlen(numm))
+			numm = add_start_str(" ", &numm);
+	}
+	if (flags.precision < ft_strlen(numm))
+	{
+		numm = str_cut(numm, (int)ft_strlen(numm) - flags.precision)
+	}
+	if (flags.width < ft_strlen(numm))
+	{
+		numm = str_cut(numm, (int)ft_strlen(numm) - flags.precision)
+	}
+}
+
+char	*str_cut(char **str, int n)
 {
 	char	*newstr;
 	int		i;
@@ -52,11 +129,11 @@ char	*str_cut(char *str, int n)
 		i++;
 	}
 	newstr[i] = '\0';
-	//free(str);
+	free(*str);
 	return newstr;
 }
 
-char    *add_start_str(char *str, char *added)
+char    *add_start_str(char **str, char **added)
 {
     char    *newstr;
     int     i;
@@ -77,8 +154,8 @@ char    *add_start_str(char *str, char *added)
         j++;
     }
     newstr[i] = '\0';
-    //free(str);
-    //free(added);
+    free(*str);
+    free(*added);
     return newstr;
 }
 

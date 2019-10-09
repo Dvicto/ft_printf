@@ -31,7 +31,7 @@ int		start_printf(va_list vl, char *buf, char *format)
 int		start_parce(va_list vl, char *buf, char *format)
 {
 	t_flags		flag;
-	while (*format != '%' && *format)
+	while (*format != 'd' |)
 	{
 		if (*format == '-')
 			flag.minus = 1;

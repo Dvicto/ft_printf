@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artem <artem@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:31:20 by dvictor           #+#    #+#             */
-/*   Updated: 2019/09/24 11:06:36 by artem            ###   ########.fr       */
+/*   Updated: 2019/10/09 17:47:19 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				**ft_strsplit(char const *s, char c);
 int					ft_atoi(const char *nptr);
 char				*ft_itoa(int n);
+char				*ft_litoa(long int n);
+char				*ft_llitoa(long long int n);
 int					ft_lennbr(long int n);
+int					ft_llennbr(long long int n);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

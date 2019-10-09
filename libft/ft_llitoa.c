@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lennbr.c                                        :+:      :+:    :+:   */
+/*   ft_llitoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 18:08:39 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/09 17:48:22 by dvictor          ###   ########.fr       */
+/*   Created: 2019/09/05 18:08:34 by dvictor           #+#    #+#             */
+/*   Updated: 2019/10/09 17:50:47 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lennbr(long int n)
+char	*ft_llitoa(long long int len)
 {
-	int len;
+	int			i;
+	char		*s;
 
-	len = 0;
-	if (n == 0)
+	i = ft_llennbr(len);
+	if (!(s = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	s[i] = '\0';
+	i--;
+	if (len < 0)
 	{
-		len = 1;
-		return (len);
+		s[0] = '-';
+		len = len * -1;
 	}
-	if (n < 0)
+	while (len >= 10)
 	{
-		n = n * -1;
-		len++;
+		s[i] = len % 10 + '0';
+		len = len / 10;
+		i--;
 	}
-	while (n > 0)
-	{
-		len++;
-		n = n / 10;
-	}
-	return (len);
+	s[i] = len % 10 + '0';
+	return (s);
 }
