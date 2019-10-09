@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:11:54 by dvictor           #+#    #+#             */
-/*   Updated: 2019/09/20 15:38:01 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/09 13:42:06 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strnew(size_t size)
 {
 	char	*s;
 
-	if (!(s = (char *)ft_memalloc(size + 1)))
+	if (!(s = (char *)ft_memalloc(size)))
 		return (NULL);
 	return (s);
 }

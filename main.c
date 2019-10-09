@@ -33,7 +33,14 @@ int		start_parce(va_list vl, char *buf, char *format)
 	t_flags		flag;
 	while (*format != '%' && *format)
 	{
-
+		if (*format == '-')
+			flag.minus = 1;
+		else if (*format == '+')
+			flag.plus = 1;
+		else if (*format == '#')
+			flag.grid = 1;
+		else if (*format == '0')
+			flag.zero = 1;
 	}
 }
 
