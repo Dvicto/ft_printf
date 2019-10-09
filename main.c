@@ -1,7 +1,8 @@
 #include "./libft/libft.h"
 #include <stdarg.h>
+#include "printf.h"
 
-int ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list  vl;
 	char    *buf;
@@ -12,7 +13,7 @@ int ft_printf(const char *format, ...)
 	return (0);
 }
 
-int start_printf(va_list vl, char *buf, char *format)
+int		start_printf(va_list vl, char *buf, char *format)
 {
 	if (*format == '%' && format[1] == '%')
 		1;//out %
@@ -25,6 +26,15 @@ int start_printf(va_list vl, char *buf, char *format)
 		}
 	else
 		1;//out text;
+}
+
+int		start_parce(va_list vl, char *buf, char *format)
+{
+	t_flags		flag;
+	while (*format != '%' && *format)
+	{
+
+	}
 }
 
 int main()
