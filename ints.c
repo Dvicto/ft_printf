@@ -14,20 +14,46 @@ char    *ints(t_flags flags, int num)
 	if (flags.precision > ft_strlen(numm))
 	{
 		while(flags.precision != ft_strlen(numm))
-			add_start_str(numm, "0");
+			numm = add_start_str(numm, "0");
 	}
 	if (flags.width > ft_strlen(numm) && flags.minus != 1)
 	{
 		if (flags.zero == 1)
 			c = "0";
 		while (flags.width != ft_strlen(numm))
-			add_start_str(numm, c);
+			numm = add_start_str(numm, c);
 	}
 	if (flags.width > ft_strlen(numm) && flags.minus == 1)
 	{	
 		while (flags.width != ft_strlen(numm))
-			add_start_str(" ", numm);
+			numm = add_start_str(" ", numm);
 	}
+	if (flags.precision < ft_strlen(numm))
+	{
+		numm = str_cut(numm, (int)ft_strlen(numm) - flags.precision)
+	}
+	if (flags.width < ft_strlen(numm))
+	{
+		numm = str_cut(numm, (int)ft_strlen(numm) - flags.precision)
+	}
+}
+char	*str_cut(char *str, int n)
+{
+	char	*newstr;
+	int		i;
+	int		j;
+	
+	i = 0;
+	j = (int)ft_strlen(str) - n;
+	newstr = (char *)ft_memalloc(j + 1);
+	while (i < j)
+	{
+		newstr[i] = str[i];
+		i++;
+	}
+	newstr[i] = '\0';
+	//free(str);
+	return newstr;
 }
 
 char    *add_start_str(char *str, char *added)
