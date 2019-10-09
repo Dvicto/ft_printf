@@ -38,7 +38,9 @@ char    *ints(t_flags flags, int num)
 	}
 }
 
-char    *ints(t_flags flags, long long num)
+//!!!!!!!!!!!!lints((long long)int)
+
+char    *lints(t_flags flags, long long num)
 {
 	char	*numm;
 	char	c;
@@ -76,7 +78,7 @@ char    *ints(t_flags flags, long long num)
 	}
 }
 
-char    *ints(t_flags flags, long num)
+char    *llints(t_flags flags, long num)
 {
 	char	*numm;
 	char	c;
