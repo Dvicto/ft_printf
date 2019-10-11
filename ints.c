@@ -40,7 +40,7 @@ char    *ints(t_flags flags, int num)
 
 //!!!!!!!!!!!!lints((long long)int)
 
-char    *lints(t_flags flags, long long num)
+char    *lints(t_flags flags, long long int num)
 {
 	char	*numm;
 	char	c;
