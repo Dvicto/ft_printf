@@ -6,7 +6,7 @@
 /*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 00:42:15 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/11 02:16:17 by swedde           ###   ########.fr       */
+/*   Updated: 2019/10/11 03:17:26 by swedde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,10 +211,11 @@ char	*sw_float(double a, t_flags *l)
 		i++;
 		l->precision--;
 	}
-	while (i < len)
+	while (l->width > len)
 	{
 		s[i] = ' ';
 		i++;
+		len++;
 	}
 	s[len] = '\0';
 	return (s);
@@ -222,21 +223,21 @@ char	*sw_float(double a, t_flags *l)
 
 int main()
 {
-	float a = 99.999f;
+	float a = -99.799f;
 	t_flags	*l;
 
 	l = (t_flags *)malloc(sizeof(t_flags));
 	l->grid = 1;
-	l->precision = 5;
-	l->zero = 1;
+	l->precision = 2;
+	l->zero = 0;
 	l->width = 10;
-	l->minus = 0;
-	l->space = 1;
+	l->minus = 1;
+	l->space = 0;
 	l->plus = 1;
 	char *s = sw_float((double)a, l);
-	printf("%s\n", s);
+	printf("%sOK\n", s);
 	free(s);
 	free(l);
-	printf("%# +010.5f\n", a);
+	printf("%#-+10.2fOK\n", a);
 	return (0);
 }
