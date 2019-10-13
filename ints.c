@@ -45,7 +45,7 @@ char    *lints(t_flags flags, long long int num)
 	char	*numm;
 	char	c;
 
-	c = " ";
+	c = ' ';
 	numm = ft_llitoa(num);
 	if (flags.plus == 1 && numm[0] != '-')
 		numm = add_start_str(&numm, "+");

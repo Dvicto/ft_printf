@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:31:20 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/09 17:47:19 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/13 13:07:20 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 char				*ft_catstr(const char *s1, char *s2);
+char				*ft_add_char(char **buf, char c);
 
 #endif
