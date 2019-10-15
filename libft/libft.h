@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:31:20 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/13 13:07:20 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/15 15:06:17 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int					ft_atoi(const char *nptr);
 char				*ft_itoa(int n);
 char				*ft_litoa(long int n);
 char				*ft_llitoa(long long int n);
-int					ft_lennbr(long int n);
-int					ft_llennbr(long long int n);
+int					ft_lennbr(int n);
+int					ft_llennbr(long int n);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

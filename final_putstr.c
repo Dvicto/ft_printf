@@ -1,3 +1,5 @@
+#include "printf.h"
+
 int     final_putstr(char *str)
 {
     int     i;

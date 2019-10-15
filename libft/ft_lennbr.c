@@ -6,13 +6,13 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:08:39 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/09 17:48:22 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/15 14:44:20 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lennbr(long int n)
+int	ft_lennbr(int n)
 {
 	int len;
 
