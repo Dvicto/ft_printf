@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 00:42:15 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/14 18:27:00 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/10/16 17:03:01 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ unsigned long long	sw_round(unsigned long long *two)
 	}
 }
 
-char	*sw_float(long double a, t_flags *l)
+char	*sw_float(double a, t_flags *l)
 {
 	char				*s;				//return
 	int					i;				//счетчик строки
@@ -223,21 +223,21 @@ char	*sw_float(long double a, t_flags *l)
 
 int main()
 {
-	long double a = 2893487284726529837.234987257927528;
+	long double a = 2.01 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0 + 2.0;
 	t_flags	*l;
 
 	l = (t_flags *)malloc(sizeof(t_flags));
 	l->grid = 0;
-	l->precision = 6;
+	l->precision = 15;
 	l->zero = 0;
 	l->width = 0;
 	l->minus = 0;
 	l->space = 0;
 	l->plus = 0;
-	char *s = sw_float((long double)a, l);
+	char *s = sw_float((double)a / 10, l);
 	printf("%s OK\n", s);
 	free(s);
 	free(l);
-	printf("%Lf OK\n", a);
+	printf("%.33Lf OK\n", a);
 	return (0);
 }

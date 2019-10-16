@@ -54,7 +54,7 @@ int		sw_o_flag(int a, t_flags *l)
 	len_print_hex(a, 16, &k);
 	len = k;
 	if (l->grid)
-		len++;
+		len += 2;
 	if (len < l->precision)
 	{
 		prec++;
@@ -93,7 +93,7 @@ int		sw_o_flag(int a, t_flags *l)
 	}
 	if (l->grid)
 	{
-		write(1, "0", 1);
+		write(1, "0x", 2);
 		i++;
 		l->width--;
 	}
@@ -114,7 +114,7 @@ int main()
 	t_flags	*l;
 
 	l = (t_flags *)malloc(sizeof(t_flags));
-	l->grid = 0;
+	l->grid = 1;
 	l->precision = 0;
 	l->zero = 0;
 	l->width = 0;
@@ -124,6 +124,6 @@ int main()
 	int a = 12964;
 
 	sw_o_flag(a, l);
-	printf(" end\n%x end\n", a);
+	printf(" end\n%#x end\n", a);
 	return(0);
 }
