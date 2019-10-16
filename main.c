@@ -46,7 +46,9 @@ int		start_printf(va_list vl, char **format)
 	else if (*(*format) != '\0')
 	{
 		//count_symb += final_putchar(*format);
-		(*format)++;//out text;
+		count_symb++;
+		(*format)++;
+		//out text;
 	}
 	else
 		return 0;
@@ -111,7 +113,7 @@ void 	parce_flags2(char *buf, t_flags **flag)
 			(*flag)->zero = 1;
 			i++;
 		}
-		else if (buf[i] >= '1' && buf[i] <= '9' && (*flag)->width == 0 && (*flag)->precision == 0)
+		else if (buf[i] >= '1' && buf[i] <= '9' && (*flag)->width == 0 && (*flag)->precision == -1)
 		{
 			(*flag)->width = ft_atoi(buf + i);
 			i += ft_lennbr((*flag)->width);
