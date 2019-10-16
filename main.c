@@ -6,40 +6,50 @@ int		ft_printf(const char *format, ...)
 {
 	va_list  vl;
 	char	*forrmat;
-	forrmat = (char *)format;
-
+	int		num = -1;
+	int 	count;
+	
+	forrmat = ft_strdup(format);
+	forrmat = ft_add_char(forrmat, '\0');
+	count = 0;
 	va_start(vl, format);
-	start_printf(vl, forrmat);
+	while (num != 0)
+	{
+		num = start_printf(vl, &forrmat);
+		count += num;
+	}
 	va_end(vl);
-	return (0);
+	return (count);
 }
 
-int		start_printf(va_list vl, char *format)
+int		start_printf(va_list vl, char **format)
 {
 		int	count_symb;
 		
 		count_symb = 0;
-	if (*format == '%' && format[1] == '%')
+	if (*(*format) != '\0' && *(*format) == '%' && (*format)[1] == '%')
 	{
 		//count_symb += final_putchar(format[1]);//out %
-		format += 2;
+		*format += 2;
 	}
-	else if (*format == '%' && !(format[1]))
+	else if (*(*format) == '%' && !((*format)[1]))
 		return 0;
-	else if (*format == '%' && format[1])
+	else if (*(*format) != '\0' && *(*format) == '%' && (*format)[1])
 		{
-			format++;
-			count_symb += start_parce(vl, format);
-			while (*format != 'd' && *format != 'i' && *format != 'o' && *format != 'u' && *format != 'x'
-		&& *format != 'X' && *format != 'f' && *format != 'c' && *format != 's' && *format != 'p')
-			format++;
-			format++;
+			(*format)++;
+			count_symb += start_parce(vl, (*format));
+			while (*(*format) != 'd' && *(*format) != 'i' && *(*format) != 'o' && *(*format) != 'u' && *(*format) != 'x'
+		&& *(*format) != 'X' && *(*format) != 'f' && *(*format) != 'c' && *(*format) != 's' && *(*format) != 'p')
+			(*format)++;
+			(*format)++;
 		}
-	else
+	else if (*(*format) != '\0')
 	{
 		//count_symb += final_putchar(*format);
-		format++;//out text;
+		(*format)++;//out text;
 	}
+	else
+		return 0;
 	return count_symb;
 }
 
@@ -48,9 +58,9 @@ int		start_parce(va_list vl, char *format)
 {
 	t_flags		*flag;
 	char		*buf;
-	buf = (char *)ft_memalloc(1);
+	buf = (char *)malloc(sizeof(char *) * 1);
 	buf[0] = '\0';
-	flag = newflags();
+	flag = newflags(&flag);
 	while (*format != 'd' && *format != 'i' && *format != 'o' && *format != 'u' && *format != 'x'
 		&& *format != 'X' && *format != 'f' && *format != 'c' && *format != 's' && *format != 'p')
 	{
@@ -135,10 +145,11 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 {
 	char	spec;
 
-	spec = buf[ft_strlen(buf) - 1];
-	printf("%c", spec);
+	spec = buf[ft_strlen(buf) - 2];
+	printf("%c\n", spec);
 	parce_flags(buf, flag);
-	printf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
+	printf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
+	free(*flag);
 	return 3;
 	/*if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
 		lets_go_dioux(vl, flag);
@@ -147,21 +158,20 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 	
 	
 }
-t_flags	*newflags()
+t_flags	*newflags(t_flags **flag)
 {
-	t_flags *flag;
-	flag = (t_flags *)malloc(sizeof(t_flags *) * 1);
-	flag->grid = 0;
-	flag->zero = 0;
-	flag->minus = 0;
-	flag->plus = 0;
-	flag->space = 0;
-	flag->l = 0;
-	flag->lbig = 0;
-	flag->h = 0;
-	flag->width = 0;
-	flag->precision = -1;
-	return flag;
+	*flag = malloc(sizeof(t_flags));
+	(*flag)->grid = 0;
+	(*flag)->zero = 0;
+	(*flag)->minus = 0;
+	(*flag)->plus = 0;
+	(*flag)->space = 0;
+	(*flag)->l = 0;
+	(*flag)->lbig = 0;
+	(*flag)->h = 0;
+	(*flag)->width = 0;
+	(*flag)->precision = -1;
+	return *flag;
 }
 
 int main()

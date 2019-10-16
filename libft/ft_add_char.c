@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: artem <artem@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 13:10:40 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/16 16:17:09 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/16 19:20:16 by artem            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char    *ft_add_char(char *buf, char c)
     int     i;
 
     i = 0;
-    str = (char *)ft_memalloc(ft_strlen(buf) + 1);
+    str = (char *)malloc(sizeof(char *) * (ft_strlen(buf) + 1));
     while (buf[i] != '\0')
         {
             str[i] = buf[i];
@@ -26,6 +26,6 @@ char    *ft_add_char(char *buf, char c)
         }
     str[i] = c;
     str[i + 1] = '\0';
-    //free(buf)f;
+    free(buf);
     return (str);
 }
