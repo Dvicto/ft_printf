@@ -25,9 +25,9 @@ int					final_putchar(char c);
 int					ft_printf(const char *format, ...);
 int					start_printf(va_list vl, char *format);
 int					start_parce(va_list vl, char *format);
-t_flags				*parce_flags(char *buf, t_flags *flag);
-t_flags				*parce_flags2(char *buf, t_flags *flag);
-t_flags				*precision(char *buf, t_flags *flag);
-int					cont1_parce(va_list vl, char *buf, t_flags *flag);
+void				parce_flags(char *buf, t_flags **flag);
+void				parce_flags2(char *buf, t_flags **flag);
+void				precision(char *buf, t_flags **flag);
+int					cont1_parce(va_list vl, char *buf, t_flags **flag);
 t_flags				*newflags();
 
