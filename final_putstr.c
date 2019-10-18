@@ -6,7 +6,7 @@ int     final_putstr(char *str)
     i = 0;
     while (str[i] != '\0')
     {
-        wtite(1, str[i], 1);
+        write(1, &str[i], 1);
         i++;
     }
     return (i);

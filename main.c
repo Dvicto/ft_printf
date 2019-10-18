@@ -29,7 +29,7 @@ int		start_printf(va_list vl, char **format)
 		count_symb = 0;
 	if (*(*format) != '\0' && *(*format) == '%' && (*format)[1] == '%')
 	{
-		//count_symb += final_putchar(format[1]);//out %
+		count_symb += final_putchar((*format)[1]);//out %
 		*format += 2;
 	}
 	else if (*(*format) == '%' && !((*format)[1]))
@@ -45,8 +45,8 @@ int		start_printf(va_list vl, char **format)
 		}
 	else if (*(*format) != '\0')
 	{
-		//count_symb += final_putchar(*format);
-		count_symb++;
+		count_symb += final_putchar(*(*format));
+		//count_symb++;
 		(*format)++;
 		//out text;
 	}
@@ -151,15 +151,20 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 	printf("%c\n", spec);
 	parce_flags(buf, flag);
 	printf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
-	free(*flag);
-	return 3;
-	/*if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
-		lets_go_dioux(vl, flag);
-	else if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
+	
+	
+	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
+		return(lets_go_dioux(vl, flag, spec));
+	/*else if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
 		lest_go_Xfcsp(vl,flag);*/
-	
-	
 }
+
+int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
+{
+	if (spec = 'd')
+		return final_putstr(ints(flag, va_arg(vl, int)));
+}
+
 t_flags	*newflags(t_flags **flag)
 {
 	*flag = malloc(sizeof(t_flags));

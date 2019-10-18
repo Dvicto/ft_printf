@@ -31,3 +31,11 @@ void				precision(char *buf, t_flags **flag);
 int					cont1_parce(va_list vl, char *buf, t_flags **flag);
 t_flags				*newflags();
 
+char				*ints(t_flags **flags, int num);
+char				*str_cut(char *str, int n);
+//char				*add_start_str(char *str, char *added);
+char				*add_start_char(char **str, char c);
+
+int					lets_go_dioux(va_list vl, t_flags **flag, char spec);
+
+
