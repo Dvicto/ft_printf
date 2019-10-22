@@ -139,7 +139,7 @@ void	precision(char *buf, t_flags **flag)
 	while (buf[i] != '.')
 		i++;
 	i++;
-	(*flag)->precision = ft_atoi(buf + i) + 1;
+	(*flag)->precision = ft_atoi(buf + i);
 	return ;
 }
 
@@ -147,7 +147,7 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 {
 	char	spec;
 
-	spec = buf[ft_strlen(buf) - 2];
+	spec = buf[ft_strlen(buf) - 1];
 	printf("%c\n", spec);
 	parce_flags(buf, flag);
 	printf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
@@ -155,14 +155,28 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 	
 	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
 		return(lets_go_dioux(vl, flag, spec));
-	/*else if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
-		lest_go_Xfcsp(vl,flag);*/
+	else if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
+		return(lets_go_Xfcsp(vl, flag, spec));
 }
 
 int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
 {
 	if (spec == 'd')
 		return final_putstr(ints(flag, va_arg(vl, int)));
+	if (spec == 'o')
+		return sw_o_flag(va_arg(vl, unsigned), *flag);
+	
+	
+	if (spec == 'x')
+		return sw_x_flag(va_arg(vl, unsigned), *flag);
+}
+
+int		lets_go_Xfcsp(va_list vl, t_flags **flag, char spec)
+{
+	if (spec == 's')
+			return sw_s_flag(va_arg(vl, char*), *flag);
+	if (spec == 'p')
+			return sw_p_flag(va_arg(vl, void*), *flag);
 }
 
 t_flags	*newflags(t_flags **flag)
@@ -183,7 +197,10 @@ t_flags	*newflags(t_flags **flag)
 
 int main()
 {
-     ft_printf("%12d, %-12.41f", 123, 321);
+	int *a;
+	a = NULL;
+     ft_printf("%d,\t %d",1 , 1);
+	 printf("\n%d,\t %d",1 , 1);
 	//printf("%f", 0.56489465165498465412983441982449823498442398449283449823494842384423544982344);
     return (0);
-}
+}//\n%015.6d"

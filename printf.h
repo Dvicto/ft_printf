@@ -1,4 +1,5 @@
 # include "./libft/libft.h"
+# include <stdint.h>
 
 typedef struct	s_flags
 {
@@ -20,6 +21,14 @@ typedef struct		s_buf_fl
 	struct s_buf_fl	*next;
 }					t_buf_fl;
 
+int					sw_o_flag(unsigned a, t_flags *l);
+int					sw_p_flag(void *a, t_flags *l);
+int					sw_s_flag(char *s, t_flags *l);
+int					sw_x_flag(unsigned a, t_flags *l);
+void				len_print_hex(unsigned a, unsigned base, int *k);
+void				print_hex(unsigned a, unsigned base);
+
+
 int					final_putstr(char *str);
 int					final_putchar(char c);
 int					ft_printf(const char *format, ...);
@@ -37,5 +46,5 @@ char				*str_cut(char *str, int n);
 char				*add_start_char(char **str, char c);
 
 int					lets_go_dioux(va_list vl, t_flags **flag, char spec);
-
+int		lets_go_Xfcsp(va_list vl, t_flags **flag, char spec);
 

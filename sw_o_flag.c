@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_o_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:17 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/21 21:45:38 by swedde           ###   ########.fr       */
+/*   Updated: 2019/10/22 13:45:53 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		sw_o_flag(unsigned a, t_flags *l)
 	len = k;
 	if (len < l->precision)
 		len = l->precision;
-	if (l->grid && ((l->precision <= k && l->grid && l->width <= k && !l->zero) || l->minus))
+	if (l->grid && ((l->precision <= k && !l->zero) || l->minus))
 	{
 		len++;
 		g = 1;
