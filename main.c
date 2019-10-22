@@ -161,7 +161,7 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 
 int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
 {
-	if (spec = 'd')
+	if (spec == 'd')
 		return final_putstr(ints(flag, va_arg(vl, int)));
 }
 
@@ -183,7 +183,7 @@ t_flags	*newflags(t_flags **flag)
 
 int main()
 {
-     ft_printf("%-#d, %-12.41f", 123, 321);
+     ft_printf("%12d, %-12.41f", 123, 321);
 	//printf("%f", 0.56489465165498465412983441982449823498442398449283449823494842384423544982344);
     return (0);
 }

@@ -11,7 +11,7 @@ char    *ints(t_flags **flags, int num)
 		numm = add_start_char(&numm, '+');
 	if ((*flags)->space == 1 && numm[0] != '-')
 		numm = add_start_char(&numm, ' ');
-	if ((*flags)->precision > ft_strlen(numm))
+	if ((*flags)->precision > ft_strlen(numm) && (*flags)->precision != -1)
 	{
 		while((*flags)->precision != ft_strlen(numm))
 			numm = add_start_char(&numm, '0');
@@ -22,19 +22,6 @@ char    *ints(t_flags **flags, int num)
 			c = '0';
 		while ((*flags)->width != ft_strlen(numm))
 			numm = add_start_char(&numm, c);
-	}
-	if ((*flags)->width > ft_strlen(numm) && (*flags)->minus == 1)
-	{	
-		while ((*flags)->width != ft_strlen(numm))
-			numm = add_start_char(&numm, ' ');
-	}
-	if ((*flags)->precision < ft_strlen(numm))
-	{
-		numm = str_cut(numm, (int)ft_strlen(numm) - (*flags)->precision);
-	}
-	if ((*flags)->width < ft_strlen(numm))
-	{
-		numm = str_cut(numm, (int)ft_strlen(numm) - (*flags)->precision);
 	}
 	return numm;
 }
