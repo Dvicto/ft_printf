@@ -32,7 +32,7 @@ void				print_hex(unsigned a, unsigned base);
 int					final_putstr(char *str);
 int					final_putchar(char c);
 int					ft_printf(const char *format, ...);
-int					start_printf(va_list vl, char **format);
+int					start_printf(va_list vl, char **format, int count_symb);
 int					start_parce(va_list vl, char *format);
 void				parce_flags(char *buf, t_flags **flag);
 void				parce_flags2(char *buf, t_flags **flag);

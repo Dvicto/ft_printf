@@ -8,28 +8,27 @@ int		ft_printf(const char *format, ...)
 	char	*forrmat;
 	int		num = -1;
 	int 	count;
-	
+	int		count_symb;
+
 	forrmat = ft_strdup(format);
 	forrmat = ft_add_char(forrmat, '\0');
 	count = 0;
 	va_start(vl, format);
 	while (num != 0)
 	{
-		num = start_printf(vl, &forrmat);
+		count_symb = 0;
+		num = start_printf(vl, &forrmat, count_symb);
 		count += num;
 	}
 	va_end(vl);
 	return (count);
 }
 
-int		start_printf(va_list vl, char **format)
+int		start_printf(va_list vl, char **format, int count_symb)
 {
-		int	count_symb;
-		
-		count_symb = 0;
 	if (*(*format) != '\0' && *(*format) == '%' && (*format)[1] == '%')
 	{
-		count_symb += final_putchar((*format)[1]);//out %
+		count_symb += final_putchar((*format)[1]);
 		*format += 2;
 	}
 	else if (*(*format) == '%' && !((*format)[1]))
@@ -46,9 +45,7 @@ int		start_printf(va_list vl, char **format)
 	else if (*(*format) != '\0')
 	{
 		count_symb += final_putchar(*(*format));
-		//count_symb++;
 		(*format)++;
-		//out text;
 	}
 	else
 		return 0;
@@ -113,12 +110,12 @@ void 	parce_flags2(char *buf, t_flags **flag)
 			(*flag)->zero = 1;
 			i++;
 		}
-		else if (buf[i] >= '1' && buf[i] <= '9' && (*flag)->width == 0 && (*flag)->precision == -1)
+		if (buf[i] >= '1' && buf[i] <= '9' && (*flag)->width == 0 && (*flag)->precision == -1)
 		{
 			(*flag)->width = ft_atoi(buf + i);
 			i += ft_lennbr((*flag)->width);
 		}
-		else if (buf[i] == '.')
+		if (buf[i] == '.')
 		{
 			precision(buf, flag);
 			i += ft_lennbr((*flag)->precision);
@@ -148,15 +145,12 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 	char	spec;
 
 	spec = buf[ft_strlen(buf) - 1];
-	printf("%c\n", spec);
 	parce_flags(buf, flag);
-	printf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
-	
-	
 	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
 		return(lets_go_dioux(vl, flag, spec));
-	else if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
+	if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
 		return(lets_go_Xfcsp(vl, flag, spec));
+	return 0;
 }
 
 int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
@@ -165,10 +159,13 @@ int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
 		return final_putstr(ints(flag, va_arg(vl, int)));
 	if (spec == 'o')
 		return sw_o_flag(va_arg(vl, unsigned), *flag);
-	
-	
+	//if (spec == 'i')
+		//return final_putstr(ints(flag, va_arg(vl, int)));
+	//if (spec == 'u')
+		//return sw_u_flag(va_arg(vl, unsigned), *flag);
 	if (spec == 'x')
 		return sw_x_flag(va_arg(vl, unsigned), *flag);
+	return 0;
 }
 
 int		lets_go_Xfcsp(va_list vl, t_flags **flag, char spec)
@@ -177,6 +174,13 @@ int		lets_go_Xfcsp(va_list vl, t_flags **flag, char spec)
 			return sw_s_flag(va_arg(vl, char*), *flag);
 	if (spec == 'p')
 			return sw_p_flag(va_arg(vl, void*), *flag);
+	if (spec == 'c')
+			return final_putchar(va_arg(vl, int));
+	//if (spec == 'f')
+		//return sw_f_flag(va_arg(vl, double), *flag);
+	//if (spec == 'X')
+		//return sw_X_flag(va_arg(vl, unsigned), *flag);
+	return 0;
 }
 
 t_flags	*newflags(t_flags **flag)
@@ -195,12 +199,13 @@ t_flags	*newflags(t_flags **flag)
 	return *flag;
 }
 
-int main()
+/*int main()
 {
-	int *a;
-	a = NULL;
-     ft_printf("%d,\t %d",1 , 1);
-	 printf("\n%d,\t %d",1 , 1);
+	int a, b;
+	
+    a = ft_printf("%s, %c\n","1234\n", '2');
+	//b = printf("%s, %c\n", "1234\n", '2');
+	//printf("%d, %d", a, b);
 	//printf("%f", 0.56489465165498465412983441982449823498442398449283449823494842384423544982344);
-    return (0);
-}//\n%015.6d"
+    return (a);
+}//\n%015.6d"*/
