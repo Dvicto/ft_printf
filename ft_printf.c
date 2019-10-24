@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   final_putstr.c                                     :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:16:29 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/23 14:39:59 by dvictor          ###   ########.fr       */
+/*   Created: 2019/10/23 13:16:20 by dvictor           #+#    #+#             */
+/*   Updated: 2019/10/23 14:40:01 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "./libft/libft.h"
+#include <stdarg.h>
 #include "ft_printf.h"
 
-int     final_putstr(char *str)
+int				ft_printf(const char *format, ...)
 {
-    int     i;
-    i = ft_strlen(str);
-    write(1, str, i);
-    return (i);
-}
+	va_list		vl;
+	char		*forrmat;
+	int			num;
+	int			count;
+	int			count_symb;
 
-int     final_putchar(char c)
-{
-    if (c)
-        write(1, &c, 1);
-    return (1);
+	num = -1;
+	forrmat = ft_strdup(format);
+	forrmat = ft_add_char(forrmat, '\0');
+	count = 0;
+	va_start(vl, format);
+	while (num != 0)
+	{
+		count_symb = 0;
+		num = start_printf(vl, &forrmat, count_symb);
+		count += num;
+	}
+	va_end(vl);
+	return (count);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sw_s_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:57:27 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/21 20:10:38 by swedde           ###   ########.fr       */
+/*   Updated: 2019/10/23 15:14:24 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "flags.h"
+#include "libft.h"
 
 int		ft_strlen(char *s)
 {
