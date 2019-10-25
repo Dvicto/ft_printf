@@ -1,5 +1,5 @@
-# include "./libft/libft.h"
-# include <stdint.h>
+#include "./libft/libft.h"
+#include <stdint.h>
 #include <stdarg.h>
 
 typedef struct	s_flags
@@ -42,11 +42,14 @@ void				precision(char *buf, t_flags **flag);
 int					cont1_parce(va_list vl, char *buf, t_flags **flag);
 t_flags				*newflags();
 
-char				*ints(t_flags **flags, int num);
+int					sw_i_flag(long long a, t_flags *l);
 char				*str_cut(char *str, int n);
 //char				*add_start_str(char *str, char *added);
 char				*add_start_char(char **str, char c);
 
 int					lets_go_dioux(va_list vl, t_flags **flag, char spec);
-int		lets_go_xfcsp(va_list vl, t_flags **flag, char spec);
+int					lets_go_xfcsp(va_list vl, t_flags **flag, char spec);
+
+int					c_flag(char c, t_flags *flag);
+void				c_flag_1(char c, t_flags *flag, char **str);
 

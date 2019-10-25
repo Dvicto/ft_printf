@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:29 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/23 14:39:59 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/25 17:11:00 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int     final_putstr(char *str)
     int     i;
     i = ft_strlen(str);
     write(1, str, i);
+    free(str);
     return (i);
 }
 

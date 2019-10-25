@@ -6,13 +6,13 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:57:27 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/23 15:14:24 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/25 15:12:08 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_strlen(char *s)
+/*int		ft_strlen(char *s)
 {
 	int i;
 
@@ -23,7 +23,7 @@ int		ft_strlen(char *s)
 		s++;
 	}
 	return (i);
-}
+}*/
 
 int		sw_s_flag(char *s, t_flags *l)
 {

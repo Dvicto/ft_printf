@@ -1,5 +1,6 @@
 NAME = libftprintf.a
-SRC = ./final_putstr.c ./ints.c ./ft_printf.c ./prntf2.c ./prntf3.c ./sw_additional.c ./sw_o_flag.c ./sw_p_flag.c ./sw_s_flag.c ./sw_x_flag.c
+SRC = ./final_putstr.c ./sw_i_flag.c ./ft_printf.c ./prntf2.c ./prntf3.c ./sw_additional.c \
+./sw_o_flag.c ./sw_p_flag.c ./sw_s_flag.c ./sw_x_flag.c 
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)

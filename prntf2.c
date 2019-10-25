@@ -6,11 +6,12 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/23 15:06:43 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/25 17:13:36 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "./libft/libft.h"
 
 int				start_printf(va_list vl, char **format, int count_symb)
 {
@@ -29,7 +30,7 @@ int				start_printf(va_list vl, char **format, int count_symb)
 		&& *(*format) != 'u' && *(*format) != 'x' && *(*format) != 'X' &&
 		*(*format) != 'f' && *(*format) != 'c' && *(*format) != 's' && *(*format) != 'p')
 		(*format)++;*/
-		(*format)++;
+		//(*format)++;
 	}
 	else if (*(*format) != '\0')
 	{
@@ -50,7 +51,7 @@ int				start_parce(va_list vl, char **format)
 	buf[0] = '\0';
 	flag = newflags(&flag);
 	while (**format != 'd' && **format != 'i' && **format != 'o'
-		&& **format != 'u' && **format != 'x'
+		&& **format != 'u' && **format != 'x' && **format != '%'
 		&& **format != 'X' && **format != 'f'
 		&& **format != 'c' && **format != 's' && **format != 'p')
 	{
@@ -135,11 +136,13 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 {
 	char	spec;
 
-	spec = buf[ft_strlen(buf) - 1];
+	spec = buf[ft_strlen(buf) - 2];
 	parce_flags(buf, flag);
 	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
 		return (lets_go_dioux(vl, flag, spec));
 	if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
 		return (lets_go_xfcsp(vl, flag, spec));
+	if (spec == '%')
+		return (c_flag('%', *flag));
 	return (0);
 }
