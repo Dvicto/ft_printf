@@ -6,6 +6,8 @@ int			c_flag(char c, t_flags *flag)
 
 	if (flag->width != 0)
 		str = ft_strnew((size_t) flag->width);
+	else
+		return final_putchar(c);	
 	if (flag->minus != 0 && flag->width > 1)
 	{
 		str = ft_add_char(str, c);

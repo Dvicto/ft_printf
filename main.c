@@ -1,6 +1,6 @@
 #include "printf.h" 
 
 int main(){
-    printf("%05c\n", 'a');
-    ft_printf("%05c\n", 'a');
+    printf("%10c\n", 'a');
+    ft_printf("%10c\n", 'a');
 }
