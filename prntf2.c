@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/28 17:53:38 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:23:34 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 
 	spec = buf[ft_strlen(buf) - 2];
 	parce_flags(buf, flag);
+	//printf("%d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
 	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
 		return (lets_go_dioux(vl, flag, spec));
 	if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')

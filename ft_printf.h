@@ -87,7 +87,7 @@ void				set_two_continue(char **two, int prec, int *f);
 char				*set_two(t_byte b, union common z, int prec, int *f);
 char				**set_num(union common z, int prec);
 void				sw_check_sign(int *len, int *i, t_flags *l, union common z);
-void				sw_ft_putnbr(long long nb);
+void				sw_ft_putnbr(long long nb, int w, int c);
 void				print_hex(unsigned a, unsigned base);
 
 

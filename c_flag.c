@@ -1,42 +1,33 @@
 #include "ft_printf.h"
 
-int			c_flag(char c, t_flags *flag)
+int				write_n_chars(char c, int n)
 {
-    char	*str;
+	int i;
 
-	if (flag->width != 0)
-		str = ft_strnew((size_t) flag->width);
-	else
-		return final_putchar(c);	
-	if (flag->minus != 0 && flag->width > 1)
+	i = 0;
+	while (i < n)
 	{
-		str = ft_add_char(str, c);
-		while (flag->width != 1)
-		{
-			str = ft_add_char(str, ' ');
-			flag->width--;
-		}
+		write(1, &c, 1);
+		i++;
 	}
-	else if (flag->width > 1)
-		c_flag_1(c, flag, &str);
-	return final_putstr(str);
+	return (n);
 }
 
-void	c_flag_1(char c, t_flags *flag, char **str)
+int				c_flag(char c, t_flags *flag)
 {
-	if (flag->zero != 0)
+	int		n;
+
+	n = 0;
+	if (!flag->minus && flag->width > 1)
 	{
-		while (flag->width != 1){
-			(*str) = ft_add_char((*str), '0');
-			flag->width--;
-		}
-		(*str) = ft_add_char((*str), c);
+		if (flag->zero)
+			n += write_n_chars('0', flag->width - 1);
+		else
+			n += write_n_chars(' ', flag->width - 1);
 	}
-	else {
-		while (flag->width != 1){
-			(*str) = ft_add_char((*str), ' ');
-			flag->width--;
-		}
-		(*str) = ft_add_char((*str), c);
-	}
+	write(1, &c, 1);
+	n++;
+	if (flag->minus && flag->width > 1)
+		n += write_n_chars(' ', flag->width - 1);
+	return (n);
 }

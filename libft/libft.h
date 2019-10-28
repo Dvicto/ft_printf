@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:31:20 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/16 15:36:14 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:48:20 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+char				*ft_rm_last_char(char *str);
 int					ft_strncmp(const char *str1, const char *str2, size_t n);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack,
