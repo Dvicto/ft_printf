@@ -22,9 +22,29 @@ typedef struct		s_buf_fl
 	struct s_buf_fl	*next;
 }					t_buf_fl;
 
+union	common
+{
+	double c;
+	int64_t i;
+	struct s_double
+	{
+		long int	m:52;
+		int			p:11;
+		int			s:1;
+	}t_double;
+};
+
+typedef struct	s_byte
+{
+	int				m;
+	int				p;
+	int				por;
+	int				f;
+}t_byte;
+
 int					ft_printf(const char *format, ...);
 int					sw_o_flag(unsigned a, t_flags *l);
-int					sw_p_flag(void *a, t_flags *l);
+int			sw_p_flag(void *a, t_flags *l);
 int					sw_s_flag(char *s, t_flags *l);
 int					sw_x_flag(unsigned a, t_flags *l);
 void				len_print_hex(unsigned a, unsigned base, int *k);
@@ -52,4 +72,22 @@ int					lets_go_xfcsp(va_list vl, t_flags **flag, char spec);
 
 int					c_flag(char c, t_flags *flag);
 void				c_flag_1(char c, t_flags *flag, char **str);
+int					arif_plus(char *s, char *s1);
+void				arif_unmoz(char *s, int a);
+void				arif_unmoz_f(char *s, int a, int por);
+char				*arif_degree(int base, int st);
+char				*arif_degree_f(int base, int st);
+int					sw_f_flag(double a, t_flags *l);
+int					sw_degree(int base, int i);
+t_byte				set_byte_srtuct(union common z);
+void				sw_increase(char *one);
+char				*set_one(t_byte *b, union common z);
+char				*sw_round(char *two, int prec, int *f);
+void				set_two_continue(char **two, int prec, int *f);
+char				*set_two(t_byte b, union common z, int prec, int *f);
+char				**set_num(union common z, int prec);
+void				sw_check_sign(int *len, int *i, t_flags *l, union common z);
+void				sw_ft_putnbr(long long nb);
+void				print_hex(unsigned a, unsigned base);
+
 

@@ -6,11 +6,11 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:17 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/23 13:17:08 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/28 17:29:53 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "flags.h"
+#include "ft_printf.h"
 
 int		sw_o_flag(unsigned a, t_flags *l)
 {

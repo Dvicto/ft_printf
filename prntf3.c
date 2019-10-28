@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:35:38 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/25 17:18:09 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/28 17:58:31 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
 {
 	if (spec == 'd')
-		return (sw_i_flag(va_arg(vl, int), *flag));
+		return (sw_i_flag((long long)va_arg(vl, long long), *flag));
 	if (spec == 'o')
 		return (sw_o_flag(va_arg(vl, unsigned), *flag));
 	if (spec == 'i')
-		return (sw_i_flag(va_arg(vl, int), *flag));
+		return (sw_i_flag((long long)va_arg(vl, long long), *flag));
 	/*if (spec == 'u')
 		return sw_u_flag(va_arg(vl, unsigned), *flag);*/
 	if (spec == 'x')
@@ -35,9 +35,9 @@ int		lets_go_xfcsp(va_list vl, t_flags **flag, char spec)
 		return (sw_p_flag(va_arg(vl, void*), *flag));
 	if (spec == 'c')
 		return (c_flag(va_arg(vl, int), *flag));
-	/*if (spec == 'f')
+	if (spec == 'f')
 		return sw_f_flag(va_arg(vl, double), *flag);
-	if (spec == 'X')
+	/*if (spec == 'X')
 		return sw_X_flag(va_arg(vl, unsigned), *flag);*/
 	return (0);
 }

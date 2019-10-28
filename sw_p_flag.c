@@ -6,11 +6,11 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:17:11 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/23 13:17:12 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/28 17:46:39 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "flags.h"
+#include "ft_printf.h"
 
 union u_double
 {
@@ -18,7 +18,7 @@ union u_double
 	int64_t	byte;
 };
 
-long int	sw_degree(long int base, int i)
+static long int	sw_degree_1(long int base, int i)
 {
 	long int	sw;
 
@@ -56,7 +56,7 @@ int		sw_p_flag(void *a, t_flags *l)
 	while (sw > -1)
 	{
 		if (z.byte >> sw & 1)
-			num = num + sw_degree(2, sw);
+			num = num + sw_degree_1(2, sw);
 		sw--;
 	}
 	if (l->precision > -1 || l->minus)

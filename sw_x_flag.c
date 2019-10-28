@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sw_x_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:09 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/21 21:42:47 by swedde           ###   ########.fr       */
+/*   Updated: 2019/10/28 17:30:09 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "flags.h"
+#include "ft_printf.h"
 
 int		sw_x_flag(unsigned a, t_flags *l)
 {
