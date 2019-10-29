@@ -44,7 +44,7 @@ typedef struct	s_byte
 
 int					ft_printf(const char *format, ...);
 int					sw_o_flag(unsigned a, t_flags *l);
-int			sw_p_flag(void *a, t_flags *l);
+int					sw_p_flag(void *a, t_flags *l);
 int					sw_s_flag(char *s, t_flags *l);
 int					sw_x_flag(unsigned a, t_flags *l);
 void				len_print_hex(unsigned a, unsigned base, int *k);
@@ -68,7 +68,12 @@ char				*str_cut(char *str, int n);
 char				*add_start_char(char **str, char c);
 
 int					lets_go_dioux(va_list vl, t_flags **flag, char spec);
-int					lets_go_xfcsp(va_list vl, t_flags **flag, char spec);
+int					lets_go_fcsp(va_list vl, t_flags **flag, char spec);
+int					lets_go_d(va_list vl, t_flags **flag);
+int					lets_go_o(va_list vl, t_flags **flag);
+int					lets_go_u(va_list vl, t_flags **flag);
+int					lets_go_x(va_list vl, t_flags **flag);
+int					lets_go_x_big(va_list vl, t_flags **flag);
 
 int					c_flag(char c, t_flags *flag);
 void				c_flag_1(char c, t_flags *flag, char **str);

@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/28 19:23:34 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/29 14:11:47 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ int				start_printf(va_list vl, char **format, int count_symb)
 	{
 		(*format)++;
 		count_symb += start_parce(vl, format);
-		/*while (*(*format) != 'd' && *(*format) != 'i' && *(*format) != 'o'
-		&& *(*format) != 'u' && *(*format) != 'x' && *(*format) != 'X' &&
-		*(*format) != 'f' && *(*format) != 'c' && *(*format) != 's' && *(*format) != 'p')
-		(*format)++;*/
-		//(*format)++;
 	}
 	else if (*(*format) != '\0')
 	{
@@ -139,10 +134,11 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 	spec = buf[ft_strlen(buf) - 2];
 	parce_flags(buf, flag);
 	//printf("%d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
-	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x')
+	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x'
+			|| spec == 'X')
 		return (lets_go_dioux(vl, flag, spec));
-	if (spec == 'X' || spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
-		return (lets_go_xfcsp(vl, flag, spec));
+	if (spec == 'f' || spec == 'c' || spec == 's' || spec == 'p')
+		return (lets_go_fcsp(vl, flag, spec));
 	if (spec == '%')
 		return (c_flag('%', *flag));
 	return (0);
