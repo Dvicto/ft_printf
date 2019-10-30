@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:35:38 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/30 16:15:31 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/10/30 16:17:16 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
 {
 	if (spec == 'd' || spec == 'i')
 		return (lets_go_d(vl, flag));
-/*	if (spec == 'o')
-		return (lets_go_o(vl, flag));*/
+	if (spec == 'o')
+		return (lets_go_o(vl, flag));
 	if (spec == 'u')
 		return (sw_u_flag_ll(va_arg(vl, unsigned long long), *flag));
 /*	if (spec == 'x')

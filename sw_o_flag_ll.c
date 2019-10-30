@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sw_o_flag.c                                        :+:      :+:    :+:   */
+/*   sw_o_flag_ll.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:17 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/28 17:29:53 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:25:15 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		sw_o_flag(unsigned a, t_flags *l)
+int		sw_o_flag_ll(unsigned long long a, t_flags *l)
 {
 	int		k;
 	int		len;

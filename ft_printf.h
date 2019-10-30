@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/30 16:10:34 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/10/30 16:25:52 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct	s_byte
 }				t_byte;
 
 int					ft_printf(const char *format, ...);
-int					sw_o_flag(unsigned a, t_flags *l);
 int					sw_p_flag(void *a, t_flags *l);
 int					sw_s_flag(char *s, t_flags *l);
 int					sw_x_flag(unsigned a, t_flags *l);
@@ -114,6 +113,7 @@ int					sw_0if_zero(t_flags *l);
 int					sw_i_flag_l(long a, t_flags *l);
 int					sw_i_flag(int a, t_flags *l);
 int					sw_u_flag_ll(unsigned long long a, t_flags *l);
+int					sw_o_flag_ll(unsigned long long a, t_flags *l);
 
 
 

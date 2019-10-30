@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sw_s_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:57:27 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/25 15:12:08 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:34:42 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*int		ft_strlen(char *s)
-{
-	int i;
-
-	i = 0;
-	while (*s)
-	{
-		i++;
-		s++;
-	}
-	return (i);
-}*/
 
 int		sw_s_flag(char *s, t_flags *l)
 {
@@ -31,7 +18,10 @@ int		sw_s_flag(char *s, t_flags *l)
 	int		len;
 
 	i = 0;
-	len = ft_strlen(s);
+	if (s)
+		len = ft_strlen(s);
+	else
+		len = 0;
 	if (l->precision != -1 && len > l->precision)
 		len = l->precision;
 	if (l->minus == 0)
