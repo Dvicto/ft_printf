@@ -1,8 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
+/*   Updated: 2019/10/30 15:04:58 by nsheev           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
 #include "./libft/libft.h"
 #include <stdint.h>
 #include <stdarg.h>
 
-typedef struct	s_flags
+typedef struct		s_flags
 {
 	int				grid;//#
 	int				zero;//"0"
@@ -40,7 +55,7 @@ typedef struct	s_byte
 	int				p;
 	int				por;
 	int				f;
-}t_byte;
+}				t_byte;
 
 int					ft_printf(const char *format, ...);
 int					sw_o_flag(unsigned a, t_flags *l);
@@ -62,7 +77,7 @@ void				precision(char *buf, t_flags **flag);
 int					cont1_parce(va_list vl, char *buf, t_flags **flag);
 t_flags				*newflags();
 
-int					sw_i_flag(long long a, t_flags *l);
+int					sw_i_flag_ll(long long a, t_flags *l);
 char				*str_cut(char *str, int n);
 //char				*add_start_str(char *str, char *added);
 char				*add_start_char(char **str, char c);
@@ -92,7 +107,13 @@ void				set_two_continue(char **two, int prec, int *f);
 char				*set_two(t_byte b, union common z, int prec, int *f);
 char				**set_num(union common z, int prec);
 void				sw_check_sign(int *len, int *i, t_flags *l, union common z);
-void				sw_ft_putnbr(long long nb, int w, int c);
+void				sw_ft_putnbr_ll(long long nb);
 void				print_hex(unsigned a, unsigned base);
 
+int					sw_0if_zero(t_flags *l);
+int					sw_i_flag_l(long a, t_flags *l);
+int					sw_i_flag(int a, t_flags *l);
 
+
+
+#endif

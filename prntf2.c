@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prntf2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/29 14:11:47 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/10/30 15:50:35 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			parce_flags2(char *buf, t_flags **flag)
 		(buf[i - 1] < '0' || buf[i - 1] > '9')))
 		{
 			(*flag)->zero = 1;
-			i++;
+			//i++;
 		}
 		if (buf[i] >= '1' && buf[i] <= '9' && (*flag)->width == 0
 			&& (*flag)->precision == -1)

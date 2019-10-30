@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sw_i_flag.c                                        :+:      :+:    :+:   */
+/*   sw_i_flag_ll.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/30 15:06:31 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/10/30 15:03:01 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		sw_ft_putnbr_i(int nb)
+void		sw_ft_putnbr_ll(long long nb)
 {
 	if (nb < 0)
 		nb = nb * (-1);
 	if (nb / 10)
-		sw_ft_putnbr_i(nb / 10);
+		sw_ft_putnbr_ll(nb / 10);
 	ft_putchar(nb % 10 + 48);
 }
 
-static int			sw_length(int a)
+int			sw_length(long long a)
 {
 	int i;
 
@@ -36,7 +36,7 @@ static int			sw_length(int a)
 	return (i);
 }
 
-static void	sw_check_sign_1(int *len, int *i, t_flags *l, int a)
+static void	sw_check_sign_1(int *len, int *i, t_flags *l, long long a)
 {
 	if (a < 0)
 	{
@@ -61,7 +61,7 @@ static void	sw_check_sign_1(int *len, int *i, t_flags *l, int a)
 	}
 }
 
-static int	sw_if_minus(int *len, t_flags *l, int a)
+static int	sw_if_minus(int *len, t_flags *l, long long a)
 {
 	int		i;
 
@@ -74,7 +74,7 @@ static int	sw_if_minus(int *len, t_flags *l, int a)
 		l->precision--;
 		l->width--;
 	}
-	sw_ft_putnbr_i(a);
+	sw_ft_putnbr_ll(a);
 	i += sw_length(a);
 	l->width -= sw_length(a);
 	while (l->width > 0)
@@ -86,7 +86,7 @@ static int	sw_if_minus(int *len, t_flags *l, int a)
 	return (i);
 }
 
-static int	sw_if_zero(int *len, t_flags *l, int a)
+static int	sw_if_zero(int *len, t_flags *l, long long a)
 {
 	int		i;
 
@@ -98,12 +98,12 @@ static int	sw_if_zero(int *len, t_flags *l, int a)
 		i++;
 		l->width--;
 	}
-	sw_ft_putnbr_i(a);
+	sw_ft_putnbr_ll(a);
 	i += sw_length(a);
 	return (i);
 }
 
-static int	sw_if_else(int *len, t_flags *l, int a)
+static int	sw_if_else(int *len, t_flags *l, long long a)
 {
 	int		i;
 
@@ -125,12 +125,12 @@ static int	sw_if_else(int *len, t_flags *l, int a)
 		i++;
 		l->precision--;
 	}
-	sw_ft_putnbr_i(a);
+	sw_ft_putnbr_ll(a);
 	i += sw_length(a);
 	return (i);
 }
 
-int			sw_i_flag(int a, t_flags *l)
+int			sw_i_flag_ll(long long a, t_flags *l)
 {
 	int		len;
 

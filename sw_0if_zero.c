@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sw_if_zero.c                                       :+:      :+:    :+:   */
+/*   sw_0if_zero.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 00:30:44 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/30 00:34:47 by swedde           ###   ########.fr       */
+/*   Updated: 2019/10/30 15:19:46 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	sw_if_zero(t_flags *l)
+int	sw_0if_zero(t_flags *l)
 {
 	int len;
 	int i;
@@ -35,6 +35,11 @@ int	sw_if_zero(t_flags *l)
 		else if (l->space)
 		{
 			write(1, " ", 1);
+			l->width--;
+		}
+		if (l->precision == -1)
+		{
+			write(1, "0", 1);
 			l->width--;
 		}
 		while (l->precision > 0)
