@@ -1,6 +1,7 @@
 #include "printf.h" 
 
 int main(){
-    printf("\n%0-8.5d", 34);
-    ft_printf("end\n%0-8.5dend\n", 34);
+    
+    ft_printf("\n%08.5o", 0);
+ //   printf("end\n%#07oend\n", 698334);
 }

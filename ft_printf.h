@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/30 16:25:52 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/10/30 17:55:21 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ int					sw_i_flag_l(long a, t_flags *l);
 int					sw_i_flag(int a, t_flags *l);
 int					sw_u_flag_ll(unsigned long long a, t_flags *l);
 int					sw_o_flag_ll(unsigned long long a, t_flags *l);
-
-
+int					sw_o_flag_l(unsigned long a, t_flags *l);
 
 #endif
