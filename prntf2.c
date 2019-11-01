@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prntf2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/30 19:47:04 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/01 15:31:37 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int				start_printf(va_list vl, char **format, int count_symb)
 {
+	color(format);
 	if (*(*format) != '\0' && *(*format) == '%' && (*format)[1] == '%')
 	{
 		count_symb += final_putchar((*format)[1]);
@@ -26,6 +27,7 @@ int				start_printf(va_list vl, char **format, int count_symb)
 	{
 		(*format)++;
 		count_symb += start_parce(vl, format);
+		color(format);
 	}
 	else if (*(*format) != '\0')
 	{

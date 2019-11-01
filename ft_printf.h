@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/30 17:55:21 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/01 15:34:59 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 #include "./libft/libft.h"
 #include <stdint.h>
 #include <stdarg.h>
+
+# define RESET      "\033[0m"
+# define BOLD       "\033[1m"
+# define BLACK      "\033[30;1m"
+# define RED        "\033[31;1m"
+# define GREEN      "\033[32;1m"
+# define YELLOW     "\033[33;1m"
+# define BLUE       "\033[34;1m"
+# define PURPLE     "\033[35;1m"
+# define CYAN       "\033[36;1m"
+# define WHITE      "\033[37;1m"
 
 typedef struct		s_flags
 {
@@ -56,7 +67,7 @@ typedef struct	s_byte
 	int				por;
 	int				f;
 }				t_byte;
-
+void    			color(char **format);
 int					ft_printf(const char *format, ...);
 int					sw_p_flag(void *a, t_flags *l);
 int					sw_s_flag(char *s, t_flags *l);
