@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/01 15:34:59 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/04 16:19:28 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ void    			color(char **format);
 int					ft_printf(const char *format, ...);
 int					sw_p_flag(void *a, t_flags *l);
 int					sw_s_flag(char *s, t_flags *l);
+int					sw_x_flag_ll(unsigned long long a, t_flags *l);
+int					sw_x_flag_l(unsigned long a, t_flags *l);
 int					sw_x_flag(unsigned a, t_flags *l);
+int					sw_0if_zero_x(t_flags *l);
+int					sw_x_big_flag_ll(unsigned long long a, t_flags *l);
 void				len_print_hex(unsigned a, unsigned base, int *k);
 void				print_hex(unsigned a, unsigned base);
 

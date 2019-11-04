@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_f_add2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:34:43 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/28 17:29:02 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/04 16:33:02 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char		**set_num(union common z, int prec)
 		sw_increase(num[0]);
 	buf = num[0];
 	i = 0;
-	while (buf[i] == '0')
+	while (buf[i] == '0' && i < 347)
 		i++;
 	num[0] = ft_strsub(buf, i, 349 - i - 1);
 	free(buf);
