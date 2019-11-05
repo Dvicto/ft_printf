@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/04 16:19:28 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/05 19:56:02 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "./libft/libft.h"
 #include <stdint.h>
 #include <stdarg.h>
+#include <float.h>
 
 # define RESET      "\033[0m"
 # define BOLD       "\033[1m"

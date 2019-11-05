@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:35:38 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/05 15:58:52 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/05 20:06:25 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
 
 int		lets_go_fcsp(va_list vl, t_flags **flag, char spec)
 {
+	long double a;
+
 	if (spec == 's')
 		return (sw_s_flag(va_arg(vl, char*), *flag));
 	if (spec == 'p')
@@ -38,7 +40,12 @@ int		lets_go_fcsp(va_list vl, t_flags **flag, char spec)
 	if (spec == 'f')
 	{
 		if ((*flag)->lbig)
-			return sw_f_flag((double)va_arg(vl, long double), *flag);
+		{
+			a = va_arg(vl, long double);
+			if (a == -LDBL_MIN)
+				a = -DBL_MIN;
+			return sw_f_flag((double)a, *flag);
+		}
 		return sw_f_flag(va_arg(vl, double), *flag);
 	}
 	return (0);

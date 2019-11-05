@@ -28,15 +28,17 @@ int		lets_go_o(va_list vl, t_flags **flag)
 
 int		lets_go_u(va_list vl, t_flags **flag)
 {
+	unsigned a;
 /*	if ((*flag)->h == 1)
 		return (sw_u_flag_h(va_arg(vl, short unsigned), *flag));
 	if ((*flag)->h == 2)
 		return (sw_u_flag_hh(va_arg(vl, char unsigned), *flag));
 	if ((*flag)->l == 1)
-		return (sw_u_flag_l(va_arg(vl, unsigned long), *flag));
+		return (sw_u_flag_l(va_arg(vl, unsigned long), *flag));*/
 	if ((*flag)->l == 2)
-		return (sw_u_flag_ll(va_arg(vl, unsigned long long), *flag));*/
-	return (sw_u_flag_ll(va_arg(vl, unsigned), *flag));
+		return (sw_u_flag_ll(va_arg(vl, unsigned long long), *flag));
+	a = va_arg(vl, unsigned);
+	return (sw_u_flag_ll((unsigned long long)a, *flag));
 }
 
 int		lets_go_x(va_list vl, t_flags **flag)

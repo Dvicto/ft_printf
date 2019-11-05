@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/05 15:46:03 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/05 17:58:02 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void			parce_flags2(char *buf, t_flags **flag)
 	while (i < ft_strlen(buf))
 	{
 		if (buf[0] == '0' || (buf[i] == '0' &&
-		(buf[i - 1] < '0' || buf[i - 1] > '9')))
+		(buf[i - 1] == ' ' || buf[i - 1] == '-' ||
+		buf[i - 1] == '+' || buf[i - 1] == '#')))
 		{
 			(*flag)->zero = 1;
 			//i++;

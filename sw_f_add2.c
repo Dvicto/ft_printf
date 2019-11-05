@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:34:43 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/05 15:07:00 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/05 20:00:09 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char		*set_two(t_byte b, union common z, int prec, int *f)
 	two = (char*)malloc(sizeof(char) * 349);
 	two[348] = '\0';
 	memset(two, '0', 348);
-	if (b.f == 0)
+	if (b.f == 0 && z.i != 0 && z.c != DBL_MIN && z.c != -DBL_MIN)
 	{
 		free(two);
 		two = arif_degree_f(5, -b.por);
 		b.por--;
 	}
-	while (b.m > -1)
+	while (b.m > -1 && z.i != 0 && z.c != DBL_MIN && z.c != -DBL_MIN)
 	{
 		if (z.t_double.m >> b.m & 1)
 		{
