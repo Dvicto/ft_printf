@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:35:38 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/04 16:20:26 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/05 15:58:52 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ int		lets_go_fcsp(va_list vl, t_flags **flag, char spec)
 	if (spec == 'c')
 		return (c_flag((char)va_arg(vl, int), *flag));
 	if (spec == 'f')
+	{
+		if ((*flag)->lbig)
+			return sw_f_flag((double)va_arg(vl, long double), *flag);
 		return sw_f_flag(va_arg(vl, double), *flag);
+	}
 	return (0);
 }
 

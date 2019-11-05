@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:34:43 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/04 16:33:02 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/05 15:07:00 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		**set_num(union common z, int prec)
 	b = set_byte_srtuct(z);
 	num = (char **)malloc(sizeof(char *) * 2);
 	num[0] = set_one(&b, z);
-	if (prec > 0)
+	if (prec >= 0)
 		num[1] = set_two(b, z, prec, &f);
 	else
 		num[1] = NULL;

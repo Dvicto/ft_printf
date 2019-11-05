@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prntf2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/01 15:31:37 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/05 15:46:03 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 
 	spec = buf[ft_strlen(buf) - 2];
 	parce_flags(buf, flag);
-	//printf("%d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
+//	printf("%d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
 	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x'
 			|| spec == 'X')
 		return (lets_go_dioux(vl, flag, spec));

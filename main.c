@@ -2,6 +2,6 @@
 
 int main(){
     
-    ft_printf("%#lx", 22337203685477);
-    printf("\n%#lx", 22337203685477);
+    ft_printf("%5.0Lf", 7.3);
+    printf("\n%5.0f\n", 7.3);
 }
