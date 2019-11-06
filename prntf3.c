@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prntf3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:35:38 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/05 20:06:25 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 19:25:09 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int		lets_go_dioux(va_list vl, t_flags **flag, char spec)
 	if (spec == 'o')
 		return (lets_go_o(vl, flag));
 	if (spec == 'u')
-		return (sw_u_flag_ll(va_arg(vl, unsigned long long), *flag));
+	{
+		(*flag)->space = 0;
+		return (lets_go_u(vl, flag));
+	}
 	if (spec == 'x')
 		return (lets_go_x(vl, flag));
 	if (spec == 'X')

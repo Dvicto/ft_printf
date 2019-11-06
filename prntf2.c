@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prntf2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/06 17:04:13 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 18:51:03 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int				start_printf(va_list vl, char **format, int count_symb)
 		*format += 2;
 	}
 	else if (*(*format) == '%' && !((*format)[1]))
+	{
+		(*format)++;
 		return (0);
+	}
 	else if (*(*format) != '\0' && *(*format) == '%' && (*format)[1])
 	{
 		(*format)++;
@@ -136,7 +139,7 @@ int		cont1_parce(va_list vl, char *buf, t_flags **flag)
 
 	spec = buf[ft_strlen(buf) - 2];
 	parce_flags(buf, flag);
-//	printf("%d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
+	//printf("%d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
 	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x'
 			|| spec == 'X')
 		return (lets_go_dioux(vl, flag, spec));

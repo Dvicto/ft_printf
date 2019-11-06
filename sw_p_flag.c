@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_p_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:17:11 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/06 18:00:19 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 19:15:19 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		if_p_null(t_flags *l)
 			l->width--;
 		}
 		write(1, "0x0", n);
-		i++;
+		i += n;
 		while (l->precision - 1 > 0)
 		{
 			write(1, "0", 1);

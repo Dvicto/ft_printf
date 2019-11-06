@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:20 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/01 16:00:06 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/06 19:11:58 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int				ft_printf(const char *format, ...)
 	int			count;
 	int			count_symb;
 
-	num = -1;
+	num = 0;
 	forrmat = ft_strdup(format);
 	forrmat = ft_add_char(forrmat, '\0');
 	count = 0;
