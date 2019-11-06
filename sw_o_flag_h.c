@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sw_o_flag_l.c                                      :+:      :+:    :+:   */
+/*   sw_o_flag_h.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:17 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/06 18:15:14 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 18:07:37 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	print_hex_l(unsigned long a, unsigned base)
+static void	print_hex_o_h(unsigned short a, unsigned base)
 {
 	char	*s;
 	int		i;
@@ -31,18 +31,18 @@ static void	print_hex_l(unsigned long a, unsigned base)
 		i++;
 	}
 	if (a > base - 1)
-		print_hex_l(a / base, base);
+		print_hex_o_h(a / base, base);
 	write(1, &s[a % base], 1);
 }
 
-void	len_print_hex_o_l(unsigned long a, unsigned base, int *k)
+void	len_print_hex_o_h(unsigned short a, unsigned base, int *k)
 {
 	if (a > base - 1)
-		len_print_hex_o_l(a / base, base, k);
+		len_print_hex(a / base, base, k);
 	(*k)++;
 }
 
-int		sw_o_flag_l(unsigned long a, t_flags *l)
+int		sw_o_flag_h(unsigned short a, t_flags *l)
 {
 	int		k;
 	int		len;
@@ -55,7 +55,7 @@ int		sw_o_flag_l(unsigned long a, t_flags *l)
 	if (a == 0)
 		l->grid = 0;
 	k = 0;
-	len_print_hex_o_l(a, 8, &k);
+	len_print_hex_o_h(a, 8, &k);
 	len = k;
 	if (len < l->precision)
 		len = l->precision;
@@ -81,7 +81,7 @@ int		sw_o_flag_l(unsigned long a, t_flags *l)
 			len--;
 			l->width--;
 		}
-		print_hex_l(a, 8);
+		print_hex_o_h(a, 8);
 		i = i + k;
 		l->width = l->width - k;
 		while (l->width > 0)
@@ -105,7 +105,7 @@ int		sw_o_flag_l(unsigned long a, t_flags *l)
 			i++;
 			l->width--;
 		}
-		print_hex_l(a, 8);
+		print_hex_o_h(a, 8);
 		i = i + k;
 	}
 	else
@@ -129,7 +129,7 @@ int		sw_o_flag_l(unsigned long a, t_flags *l)
 			i++;
 			len--;
 		}
-		print_hex_l(a, 8);
+		print_hex_o_h(a, 8);
 		i = i + k;
 	}
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 00:30:44 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/04 15:00:34 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 14:45:30 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	sw_0if_zero_x(t_flags *l)
 	int len;
 	int i;
 
+	i = 0;
 	len = 1;
 	if (l->precision > -1)
 	{
@@ -31,27 +32,32 @@ int	sw_0if_zero_x(t_flags *l)
 		{
 			write(1, "+", 1);
 			l->width--;
+			i++;
 		}
 		else if (l->space)
 		{
 			write(1, " ", 1);
 			l->width--;
+			i++;
 		}
 		if (l->precision == -1)
 		{
 			write(1, "0", 1);
 			l->width--;
+			i++;
 		}
 		while (l->precision > 0)
 		{
 			write(1, "0", 1);
 			l->width--;
 			l->precision--;
+			i++;
 		}
 		while (l->width > 0)
 		{
 			write(1, " ", 1);
 			l->width--;
+			i++;
 		}
 	}
 	else if (l->zero)
@@ -60,18 +66,24 @@ int	sw_0if_zero_x(t_flags *l)
 		{
 			write(1, "+", 1);
 			l->width--;
+			i++;
 		}
 		else if (l->space)
 		{
 			write(1, " ", 1);
 			l->width--;
+			i++;
 		}
 		if (l->width <= 0)
+		{
 			write(1, "0", 1);
+			i++;
+		}
 		while (l->width > 0)
 		{
 			write(1, "0", 1);
 			l->width--;
+			i++;
 		}
 	}
 	else
@@ -80,17 +92,29 @@ int	sw_0if_zero_x(t_flags *l)
 		{
 			write(1, " ", 1);
 			l->width--;
+			i++;
 		}
 		if (l->plus)
+		{
 			write(1, "+", 1);
+			i++;
+		}
 		else if (l->space)
+		{
 			write(1, " ", 1);
+			i++;
+		}
 		if (l->precision == -1)
+		{
 			write(1, "0", 1);
+			i++;
+		}
 		while (l->precision > 0)
 		{
 			write(1, "0", 1);
 			l->precision--;
+			i++;
 		}
 	}
+	return (i);
 }

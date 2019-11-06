@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:17:11 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/04 17:24:56 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 18:00:19 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ union u_double
 	int64_t	byte;
 };
 
-static long int	sw_degree_1(long int base, int i)
+static unsigned long	sw_degree_1(unsigned long base, int i)
 {
-	long int	sw;
+	unsigned long sw;
 
 	sw = 1;
 	while (i)
@@ -38,7 +38,7 @@ void	long_print_hex_len(long int a, int base, int *k)
 	(*k)++;
 }
 
-void	long_print_hex(long int a, int base)
+void	long_print_hex(unsigned long a, int base)
 {
 	char s[17] = "0123456789abcdef";
 	if (a > base - 1)
@@ -48,38 +48,59 @@ void	long_print_hex(long int a, int base)
 
 int		if_p_null(t_flags *l)
 {
+	int n;
+	int i;
+
+	i = 0;
+	if (l->precision == 0)
+		n = 2;
+	else
+		n = 3;
 	if (l->minus)
 	{
-		write(1, "0x0", 3);
-		while (l->width - 3 > 0)
+		write(1, "0x0", n);
+		i = n;
+		while (l->precision - 1> 0)
+		{
+			write(1, "0", 1);
+			i++;
+			l->precision--;
+		}
+		while (l->width - n > 0)
 		{
 			write(1, " ", 1);
+			i++;
 			l->width--;
 		}
 	}
 	else
 	{
-		while (l->width - 3 > 0)
+		while (l->width - n > 0)
 		{
 			write(1, " ", 1);
+			i++;
 			l->width--;
 		}
-		write(1, "0x0", 3);
+		write(1, "0x0", n);
+		i++;
+		while (l->precision - 1 > 0)
+		{
+			write(1, "0", 1);
+			i++;
+			l->precision--;
+		}
 	}
-	if (l->width < 3)
-		return (3);
-	else
-		return (l->width);
+	return (i);
 }
 
 int		sw_p_flag(void *a, t_flags *l)
 {
-	union	u_double z;
-	long	num;
-	int		sw;
-	int		len;
-	int		i;
-	int		k;
+	union	u_double	z;
+	unsigned long		num;
+	int					sw;
+	int					len;
+	int					i;
+	int					k;
 
 	sw = 63;
 	i = 0;

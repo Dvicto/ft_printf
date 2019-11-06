@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/05 19:56:02 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 18:07:48 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <float.h>
+#include <limits.h>
 
 # define RESET      "\033[0m"
 # define BOLD       "\033[1m"
@@ -131,5 +132,14 @@ int					sw_i_flag(int a, t_flags *l);
 int					sw_u_flag_ll(unsigned long long a, t_flags *l);
 int					sw_o_flag_ll(unsigned long long a, t_flags *l);
 int					sw_o_flag_l(unsigned long a, t_flags *l);
+int					sw_i_flag_h(short a, t_flags *l);
+int					sw_i_flag_hh(char a, t_flags *l);
+int					sw_u_flag(unsigned a, t_flags *l);
+int					sw_u_flag_h(unsigned short a, t_flags *l);
+int					sw_u_flag_hh(unsigned char a, t_flags *l);
+int					sw_u_flag_l(unsigned long a, t_flags *l);
+int					sw_o_flag_hh(unsigned char a, t_flags *l);
+int					sw_o_flag_h(unsigned short a, t_flags *l);
+
 
 #endif

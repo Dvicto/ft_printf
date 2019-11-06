@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sw_i_flag_ll.c                                     :+:      :+:    :+:   */
+/*   sw_i_flag_hh.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/06 17:28:21 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/06 16:51:58 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		sw_ft_putnbr_ll(long long nb)
+static void		sw_ft_putnbr_i_hh(char nb)
 {
-	if (nb == LLONG_MIN)
+	if (nb == -128)
 	{
-		write(1, "9223372036854775808", 19);
+		write(1, "128", 3);
 		return ;
 	}
 	if (nb < 0)
 		nb = nb * (-1);
 	if (nb / 10)
-		sw_ft_putnbr_ll(nb / 10);
+		sw_ft_putnbr_i_hh(nb / 10);
 	ft_putchar(nb % 10 + 48);
 }
 
-int			sw_length(long long a)
+static int			sw_length_hh(char a)
 {
 	int i;
-
+	
 	if (!a)
 		return (1);
 	i = 0;
@@ -41,7 +41,7 @@ int			sw_length(long long a)
 	return (i);
 }
 
-static void	sw_check_sign_1(int *len, int *i, t_flags *l, long long a)
+static void	sw_check_sign_1hh(int *len, int *i, t_flags *l, char a)
 {
 	if (a < 0)
 	{
@@ -66,22 +66,22 @@ static void	sw_check_sign_1(int *len, int *i, t_flags *l, long long a)
 	}
 }
 
-static int	sw_if_minus(int *len, t_flags *l, long long a)
+static int	sw_if_minus_hh(int *len, t_flags *l, char a)
 {
-	int		i;
-
+	int i;
+	
 	i = 0;
-	sw_check_sign_1(len, &i, l, a);
-	while (l->precision > sw_length(a))
+	sw_check_sign_1hh(len, &i, l, a);
+	while (l->precision > sw_length_hh(a))
 	{
 		write(1, "0", 1);
 		i++;
 		l->precision--;
 		l->width--;
 	}
-	sw_ft_putnbr_ll(a);
-	i += sw_length(a);
-	l->width -= sw_length(a);
+	sw_ft_putnbr_i_hh(a);
+	i += sw_length_hh(a);
+	l->width -= sw_length_hh(a);
 	while (l->width > 0)
 	{
 		write(1, " ", 1);
@@ -91,26 +91,26 @@ static int	sw_if_minus(int *len, t_flags *l, long long a)
 	return (i);
 }
 
-static int	sw_if_zero(int *len, t_flags *l, long long a)
+static int	sw_if_zero_hh(int *len, t_flags *l, char a)
 {
-	int		i;
+	int i;
 
 	i = 0;
-	sw_check_sign_1(len, &i, l, a);
+	sw_check_sign_1hh(len, &i, l, a);
 	while (l->width > *len)
 	{
 		write(1, "0", 1);
 		i++;
 		l->width--;
 	}
-	sw_ft_putnbr_ll(a);
-	i += sw_length(a);
+	sw_ft_putnbr_i_hh(a);
+	i += sw_length_hh(a);
 	return (i);
 }
 
-static int	sw_if_else(int *len, t_flags *l, long long a)
+static int	sw_if_else_hh(int *len, t_flags *l, char a)
 {
-	int		i;
+	int i;
 
 	i = 0;
 	while (l->width > *len)
@@ -123,23 +123,23 @@ static int	sw_if_else(int *len, t_flags *l, long long a)
 	{
 		write(1, " ", 1);
 	}
-	sw_check_sign_1(len, &i, l, a);
-	while (l->precision > sw_length(a))
+	sw_check_sign_1hh(len, &i, l, a);
+	while (l->precision > sw_length_hh(a))
 	{
 		write(1, "0", 1);
 		i++;
 		l->precision--;
 	}
-	sw_ft_putnbr_ll(a);
-	i += sw_length(a);
+	sw_ft_putnbr_i_hh(a);
+	i += sw_length_hh(a);
 	return (i);
 }
 
-int			sw_i_flag_ll(long long a, t_flags *l)
+int			sw_i_flag_hh(char a, t_flags *l)
 {
-	int		len;
+	int len;
 
-	len = sw_length(a);
+	len = sw_length_hh(a);
 	if (a == 0)
 	{
 		return (sw_0if_zero(l));
@@ -151,9 +151,9 @@ int			sw_i_flag_ll(long long a, t_flags *l)
 	if (a < 0 || l->plus || l->space)
 		len++;
 	if (l->minus)
-		return (sw_if_minus(&len, l, a));
+		return (sw_if_minus_hh(&len, l, a));
 	else if (l->zero)
-		return (sw_if_zero(&len, l, a));
+		return (sw_if_zero_hh(&len, l, a));
 	else
-		return (sw_if_else(&len, l, a));		
+		return (sw_if_else_hh(&len, l, a));		
 }

@@ -13,7 +13,15 @@ SRC = ./final_putstr.c ./sw_i_flag_ll.c ./ft_printf.c ./prntf2.c ./prntf3.c ./sw
 ./sw_i_flag.c \
 ./sw_u_flag_ll.c \
 ./sw_o_flag_ll.c \
-./sw_o_flag_l.c
+./sw_o_flag_l.c \
+sw_i_flag_h.c \
+sw_i_flag_hh.c \
+sw_u_flag.c \
+sw_u_flag_h.c \
+sw_u_flag_hh.c \
+sw_u_flag_l.c \
+sw_o_flag_hh.c \
+sw_o_flag_h.c
 
 OBJ = $(SRC:%.c=%.o)
 
