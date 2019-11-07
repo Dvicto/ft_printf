@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_p_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:17:11 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/06 19:15:19 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 00:45:26 by swedde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static unsigned long	sw_degree_1(unsigned long base, int i)
 	return (sw);
 }
 
-void	long_print_hex_len(long int a, int base, int *k)
+void	long_print_hex_len(unsigned long int a, unsigned long base, int *k) //long -> unsigned
 {
 	if (a > base - 1)
 		long_print_hex_len(a / base, base, k);
 	(*k)++;
 }
 
-void	long_print_hex(unsigned long a, int base)
+void	long_print_hex(unsigned long a, unsigned long base)
 {
 	char s[17] = "0123456789abcdef";
 	if (a > base - 1)

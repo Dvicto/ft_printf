@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_f_add2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:34:43 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/05 20:00:09 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/07 01:18:36 by swedde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char		**set_num(union common z, int prec)
 	num[0] = set_one(&b, z);
 	if (prec >= 0)
 		num[1] = set_two(b, z, prec, &f);
-	else
-		num[1] = NULL;
 	if (f)
 		sw_increase(num[0]);
 	buf = num[0];

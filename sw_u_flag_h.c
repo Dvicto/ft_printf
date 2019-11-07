@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_u_flag_h.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/06 17:32:48 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 00:54:15 by swedde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int			sw_length_u_cas(unsigned short a)
 	}
 	return (i);
 }
-
+/*
 static void	sw_check_sign_1(int *len, int *i, t_flags *l, unsigned short a)
 {
 	if (l->space)
@@ -44,13 +44,13 @@ static void	sw_check_sign_1(int *len, int *i, t_flags *l, unsigned short a)
 		l->width--;
 	}
 }
-
-static int	sw_if_minus(int *len, t_flags *l, unsigned short a)
+*/
+static int	sw_if_minus(t_flags *l, unsigned short a)
 {
 	int		i;
 
 	i = 0;
-	sw_check_sign_1(len, &i, l, a);
+//	sw_check_sign_1(len, &i, l, a);
 	while (l->precision > sw_length_u_cas(a))
 	{
 		write(1, "0", 1);
@@ -75,7 +75,7 @@ static int	sw_if_zero(int *len, t_flags *l, unsigned short a)
 	int		i;
 
 	i = 0;
-	sw_check_sign_1(len, &i, l, a);
+//	sw_check_sign_1(len, &i, l, a);
 	while (l->width > *len)
 	{
 		write(1, "0", 1);
@@ -98,11 +98,11 @@ static int	sw_if_else(int *len, t_flags *l, unsigned short a)
 		i++;
 		l->width--;
 	}
-	if (l->precision != -1 && l->width > l->precision && a == 0)
+/*	if (l->precision != -1 && l->width > l->precision && a == 0)
 	{
 		write(1, " ", 1);
-	}
-	sw_check_sign_1(len, &i, l, a);
+	}*/
+//	sw_check_sign_1(len, &i, l, a);
 	while (l->precision > sw_length_u_cas(a))
 	{
 		write(1, "0", 1);
@@ -120,9 +120,7 @@ int			sw_u_flag_h(unsigned short a, t_flags *l)
 
 	len = sw_length_u_cas(a);
 	if (a == 0)
-	{
 		return (sw_0if_zero(l));
-	}
 	if (l->minus || l->precision > -1)
 		l->zero = 0;
 	if (l->precision > len)
@@ -130,7 +128,7 @@ int			sw_u_flag_h(unsigned short a, t_flags *l)
 	if (l->space)
 		len++;
 	if (l->minus)
-		return (sw_if_minus(&len, l, a));
+		return (sw_if_minus(l, a));
 	else if (l->zero)
 		return (sw_if_zero(&len, l, a));
 	else

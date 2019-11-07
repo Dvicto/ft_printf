@@ -93,7 +93,6 @@ int		lets_go_x_big(va_list vl, t_flags **flag)
 {
 	unsigned short	a;
 	unsigned char	b;
-	unsigned		c;
 
 	if ((*flag)->h == 1)
 	{

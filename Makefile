@@ -1,4 +1,17 @@
-NAME = libftprintf.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: swedde <swedde@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/11/07 00:15:02 by swedde            #+#    #+#              #
+#    Updated: 2019/11/08 01:00:08 by swedde           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FLAG = -Wall -Werror -Wextra
+NAME = libprintf.a
 SRC = ./final_putstr.c ./sw_i_flag_ll.c ./ft_printf.c ./prntf2.c ./prntf3.c ./sw_additional.c \
 ./sw_p_flag.c ./sw_s_flag.c \
 ./sw_x_flag_ll.c \
@@ -27,11 +40,16 @@ OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME):
-	make -C libft
-	cp libft/libft.a libftprintf.a
-	gcc  -c -g $(SRC) -I ft_printf.h -I libft/libft.h
+$(NAME): libft/libft.a $(SRC)
+#	cp libft/libft.a libftprintf.a
+	gcc $(FLAG) -c -g $(SRC) -I./ -I libft/
 	ar -rc $(NAME) $(OBJ)
+
+main:
+	gcc main.c libprintf.a -L libft/ -lft && ./a.out
+
+libft/libft.a:
+	make -C libft all
 
 fclean: clean
 	make -C libft fclean
