@@ -6,7 +6,7 @@
 #    By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/07 00:15:02 by swedde            #+#    #+#              #
-#    Updated: 2019/11/08 18:54:04 by dvictor          ###   ########.fr        #
+#    Updated: 2019/11/08 20:45:54 by dvictor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,12 @@ sw_o_flag_h.c \
 sw_i_norme_1.c \
 sw_i_norme_2.c \
 sw_u_add.c \
-sw_x_big_add.c
+sw_x_big_add.c \
+sw_x_add1.c \
+sw_x_add2.c \
+sw_o_add1.c \
+sw_o_add2.c \
+sw_if0_o.c
 
 OBJ = $(SRC:%.c=%.o)
 

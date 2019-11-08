@@ -3,47 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   sw_x_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:09 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 17:35:05 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 19:25:33 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	len_print_hex_x(unsigned a, unsigned base, int *k)
+static void	sw_x_grid(t_flags *l, int *len, int *i)
 {
-	if (a > base - 1)
-		len_print_hex_x(a / base, base, k);
-	(*k)++;
+	write(1, "0x", 2);
+	(*len) -= 2;
+	(*i) += 2;
+	l->width -= 2;
 }
 
-void	print_hex_x(unsigned a, unsigned base)
+static int	sw_x_min(t_flags *l, int len, int *i, unsigned a)
 {
-	char	*s;
-	int		i;
+	int k;
 
-	s = (char*)malloc(sizeof(char) * 17);
-	s[16] = '\0';
-	i = 0;
-	while (i < 10)
+	k = 0;
+	len_print_hex_x_ll(a, 16, &k);
+	if (l->grid)
+		sw_x_grid(l, &len, i);
+	while (len > k)
 	{
-		s[i] = i + '0';
-		i++;
+		write(1, "0", 1);
+		(*i)++;
+		len--;
+		l->width--;
 	}
-	while (i < 16)
+	print_hex_x_ll(a, 16);
+	(*i) = (*i) + k;
+	l->width = l->width - k;
+	while (l->width > 0)
 	{
-		s[i] = i % 10 + 'a';
-		i++;
+		write(1, " ", 1);
+		(*i)++;
+		l->width--;
 	}
-	if (a > base - 1)
-		print_hex_x(a / base, base);
-	write(1, &s[a % base], 1);
-	free(s);
+	return (*i);
 }
 
-int		sw_x_flag(unsigned a, t_flags *l)
+static int	sw_x_zer(t_flags *l, int len, int *i, unsigned a)
+{
+	int k;
+
+	k = 0;
+	len_print_hex_x_ll(a, 16, &k);
+	if (l->grid)
+		sw_x_grid(l, &len, i);
+	while (l->width > k)
+	{
+		write(1, "0", 1);
+		(*i)++;
+		l->width--;
+	}
+	print_hex_x_ll(a, 16);
+	(*i) = (*i) + k;
+	return (*i);
+}
+
+static int	sw_x_els(t_flags *l, int len, int *i, unsigned a)
+{
+	int k;
+
+	k = 0;
+	len_print_hex_x_ll(a, 16, &k);
+	while (l->width > len)
+	{
+		write(1, " ", 1);
+		(*i)++;
+		l->width--;
+	}
+	if (l->grid)
+		sw_x_grid(l, &len, i);
+	while (len > k)
+	{
+		write(1, "0", 1);
+		(*i)++;
+		len--;
+	}
+	print_hex_x_ll(a, 16);
+	(*i) = (*i) + k;
+	return (*i);
+}
+
+int			sw_x_flag(unsigned a, t_flags *l)
 {
 	int		k;
 	int		len;
@@ -52,9 +100,9 @@ int		sw_x_flag(unsigned a, t_flags *l)
 	if (l->precision > -1 || l->minus)
 		l->zero = 0;
 	if (a == 0)
-		return(sw_0if_zero(l));
+		return (sw_0if_zero(l));
 	k = 0;
-	len_print_hex_x(a, 16, &k);
+	len_print_hex_x_ll(a, 16, &k);
 	len = k;
 	if (len < l->precision)
 		len = l->precision;
@@ -62,72 +110,9 @@ int		sw_x_flag(unsigned a, t_flags *l)
 		len += 2;
 	i = 0;
 	if (l->minus)
-	{
-		if (l->grid)
-		{
-			write(1, "0x", 2);
-			len -= 2;
-			i += 2;
-			l->width -= 2;
-		}
-		while (len > k)
-		{
-			write(1, "0", 1);
-			i++;
-			len--;
-			l->width--;
-		}
-		print_hex_x(a, 16);
-		i = i + k;
-		l->width = l->width - k;
-		while (l->width > 0)
-		{
-			write(1, " ", 1);
-			i++;
-			l->width--;
-		}
-	}
+		return (sw_x_min(l, len, &i, a));
 	else if (l->zero)
-	{
-		if (l->grid)
-		{
-			write(1, "0x", 2);
-			len -= 2;
-			i += 2;
-			l->width -= 2;
-		}
-		while (l->width > k)
-		{
-			write(1, "0", 1);
-			i++;
-			l->width--;
-		}
-		print_hex_x(a, 16);
-		i = i + k;
-	}
+		return (sw_x_zer(l, len, &i, a));
 	else
-	{
-		while (l->width > len)
-		{
-			write(1, " ", 1);
-			i++;
-			l->width--;
-		}
-		if (l->grid)
-		{
-			write(1, "0x", 2);
-			len -= 2;
-			i += 2;
-			l->width -= 2;
-		}
-		while (len > k)
-		{
-			write(1, "0", 1);
-			i++;
-			len--;
-		}
-		print_hex_x(a, 16);
-		i = i + k;
-	}
-	return (i);
+		return (sw_x_els(l, len, &i, a));
 }

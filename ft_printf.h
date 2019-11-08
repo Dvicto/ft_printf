@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/08 18:54:22 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 20:44:10 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@
 # define PURPLE     "\033[35;1m"
 # define CYAN       "\033[36;1m"
 # define WHITE      "\033[37;1m"
+
+typedef struct		s_ofl
+{
+	int 			k;
+	int 			len;
+	int 			g;
+}					t_ofl;
 
 typedef struct		s_flags
 {
@@ -60,7 +67,7 @@ union				common
 		int			p:11;
 		int			s:1;
 	}				t_double;
-};
+}					;
 
 typedef struct		s_byte
 {
@@ -73,7 +80,7 @@ typedef struct		s_byte
 void				color(char **format);
 int					ft_printf(const char *format, ...);
 int					sw_p_flag(void *a, t_flags *l);
-int					sw_s_flag(char *s, t_flags *l);
+int					sw_s_flag(char *s, t_flags *l, int i, int f);
 int					sw_x_flag_ll(unsigned long long a, t_flags *l);
 int					sw_x_flag_l(unsigned long a, t_flags *l);
 int					sw_x_flag(unsigned a, t_flags *l);
@@ -145,12 +152,27 @@ void				sw_ft_putnbr_i_hh(char nb);
 int					sw_length_hh(char a);
 void				sw_ft_putnbr_i_h(short nb);
 int					sw_length_h(short a);
-void		sw_ft_putnbr_u_h(unsigned short nb);
-void	sw_ft_putnbr_u_hh(unsigned char nb);
-void	sw_ft_putnbr_u_l(unsigned long nb);
-void	sw_ft_putnbr_u_ll(unsigned long long nb);
-void		sw_ft_putnbr_u_cas(unsigned nb);
-void		len_print_hex_x_big_ll(unsigned long long a, unsigned base, int *k);
-void		print_hex_x_big_ll(unsigned long long a, unsigned base);
+void				sw_ft_putnbr_u_h(unsigned short nb);
+void				sw_ft_putnbr_u_hh(unsigned char nb);
+void				sw_ft_putnbr_u_l(unsigned long nb);
+void				sw_ft_putnbr_u_ll(unsigned long long nb);
+void				sw_ft_putnbr_u_cas(unsigned nb);
+void				len_print_hex_x_big_ll(unsigned long long a, unsigned base, int *k);
+void				print_hex_x_big_ll(unsigned long long a, unsigned base);
+void				len_print_hex_x_ll(unsigned long long a, unsigned base, int *k);
+void				print_hex_x_ll(unsigned long long a, unsigned base);
+void				len_print_hex_x_l(unsigned long a, unsigned base, int *k);
+void				print_hex_x_l(unsigned long a, unsigned base);
+void				len_print_hex_x(unsigned a, unsigned base, int *k);
+void				print_hex_x(unsigned a, unsigned base);
+void				print_hex_o_h(unsigned short a, unsigned base);
+void				len_print_hex_o_h(unsigned short a, unsigned base, int *k);
+void				print_hex_o_hh(unsigned char a, unsigned base);
+void				len_print_hex_o_hh(unsigned char a, unsigned base, int *k);
+void				print_hex_o_l(unsigned long a, unsigned base);
+void				len_print_hex_o_l(unsigned long a, unsigned base, int *k);
+void				print_hex_o_ll(unsigned long long a, unsigned base);
+void				len_print_hex_o_ll(unsigned long long a, unsigned base, int *k);
+int		sw_ifzero_o(t_flags *l);
 
 #endif
