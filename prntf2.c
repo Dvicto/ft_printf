@@ -3,18 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   prntf2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/06 18:51:03 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 15:12:14 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./libft/libft.h"
 
-int				start_printf(va_list vl, char **format, int count_symb)
+int				start_printf(va_list vl, char **s, int count_symb)
 {
+	char **format;
+
+	format = s;
 	color(format);
 	if (*(*format) != '\0' && *(*format) == '%' && (*format)[1] == '%')
 	{
@@ -46,6 +49,7 @@ int				start_parce(va_list vl, char **format)
 {
 	t_flags		*flag;
 	char		*buf;
+	int			i;
 
 	buf = (char *)malloc(sizeof(char *) * 1);
 	buf[0] = '\0';
@@ -55,12 +59,15 @@ int				start_parce(va_list vl, char **format)
 		&& **format != 'X' && **format != 'f'
 		&& **format != 'c' && **format != 's' && **format != 'p')
 	{
-		buf = ft_add_char(buf, **format);
+		buf = ft_add_char(&buf, **format);
 		(*format)++;
 	}
-	buf = ft_add_char(buf, **format);
+	buf = ft_add_char(&buf, **format);
 	(*format)++;
-	return (cont1_parce(vl, buf, &flag));
+	i = cont1_parce(vl, buf, &flag);
+	free(buf);
+	free(flag);
+	return (i);
 }
 
 void			parce_flags(char *buf, t_flags **flag)

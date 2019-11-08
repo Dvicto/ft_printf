@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:20 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/06 19:11:58 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 15:06:17 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				ft_printf(const char *format, ...)
 
 	num = 0;
 	forrmat = ft_strdup(format);
-	forrmat = ft_add_char(forrmat, '\0');
+//	forrmat = ft_add_char(&forrmat, '\0');
 	count = 0;
 	va_start(vl, format);
 	while (num != 0 || *forrmat != '\0')
@@ -33,6 +33,7 @@ int				ft_printf(const char *format, ...)
 		num = start_printf(vl, &forrmat, count_symb);
 		count += num;
 	}
+	free(forrmat);
 	va_end(vl);
 	return (count);
 }
