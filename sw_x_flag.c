@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_x_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:09 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 15:31:45 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 17:35:05 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		sw_x_flag(unsigned a, t_flags *l)
 	if (l->precision > -1 || l->minus)
 		l->zero = 0;
 	if (a == 0)
-		return(sw_0if_zero_x(l));
+		return(sw_0if_zero(l));
 	k = 0;
 	len_print_hex_x(a, 16, &k);
 	len = k;

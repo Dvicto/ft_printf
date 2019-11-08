@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sw_u_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 00:55:15 by swedde           ###   ########.fr       */
+/*   Updated: 2019/11/08 17:48:50 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		sw_ft_putnbr_u_cas(unsigned nb)
-{
-	if (nb / 10)
-		sw_ft_putnbr_u_cas(nb / 10);
-	ft_putchar(nb % 10 + 48);
-}
-
-static int			sw_length_u_cas(unsigned a)
+static int		sw_length_u_cas(unsigned a)
 {
 	int i;
 
@@ -33,24 +26,12 @@ static int			sw_length_u_cas(unsigned a)
 	}
 	return (i);
 }
-/*
-static void	sw_check_sign_1(int *len, int *i, t_flags *l, unsigned a)
-{
-	if (l->space)
-	{
-		write(1, " ", 1);
-		(*i)++;
-		(*len)--;
-		l->width--;
-	}
-}
-*/
-static int	sw_if_minus(t_flags *l, unsigned a)
+
+static int		sw_if_minus(t_flags *l, unsigned a)
 {
 	int		i;
 
 	i = 0;
-//	sw_check_sign_1(len, &i, l, a);
 	while (l->precision > sw_length_u_cas(a))
 	{
 		write(1, "0", 1);
@@ -70,12 +51,11 @@ static int	sw_if_minus(t_flags *l, unsigned a)
 	return (i);
 }
 
-static int	sw_if_zero(int *len, t_flags *l, unsigned a)
+static int		sw_if_zero(int *len, t_flags *l, unsigned a)
 {
 	int		i;
 
 	i = 0;
-//	sw_check_sign_1(len, &i, l, a);
 	while (l->width > *len)
 	{
 		write(1, "0", 1);
@@ -87,7 +67,7 @@ static int	sw_if_zero(int *len, t_flags *l, unsigned a)
 	return (i);
 }
 
-static int	sw_if_else(int *len, t_flags *l, unsigned a)
+static int		sw_if_else(int *len, t_flags *l, unsigned a)
 {
 	int		i;
 
@@ -102,7 +82,6 @@ static int	sw_if_else(int *len, t_flags *l, unsigned a)
 	{
 		write(1, " ", 1);
 	}
-//	sw_check_sign_1(len, &i, l, a);
 	while (l->precision > sw_length_u_cas(a))
 	{
 		write(1, "0", 1);
@@ -114,7 +93,7 @@ static int	sw_if_else(int *len, t_flags *l, unsigned a)
 	return (i);
 }
 
-int			sw_u_flag(unsigned a, t_flags *l)
+int				sw_u_flag(unsigned a, t_flags *l)
 {
 	int		len;
 
@@ -134,5 +113,5 @@ int			sw_u_flag(unsigned a, t_flags *l)
 	else if (l->zero)
 		return (sw_if_zero(&len, l, a));
 	else
-		return (sw_if_else(&len, l, a));		
+		return (sw_if_else(&len, l, a));
 }

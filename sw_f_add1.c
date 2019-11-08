@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_f_add1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:26:58 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/07 00:27:04 by swedde           ###   ########.fr       */
+/*   Updated: 2019/11/08 16:21:23 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ void		sw_increase(char *one)
 {
 	char *s;
 
-	s = (char*)malloc(sizeof(char) * 349);
+	if (!(s = (char*)malloc(sizeof(char) * 349)))
+		return ;
 	s[348] = '\0';
-	memset(s, '0', 348);
+	ft_memset(s, '0', 348);
 	s[347] = '1';
 	arif_plus(one, s);
 	free(s);
@@ -50,9 +51,10 @@ char		*set_one(t_byte *b, union common z)
 	char	*one;
 	char	*buf;
 
-	one = (char*)malloc(sizeof(char) * 349);
+	if (!(one = (char*)malloc(sizeof(char) * 349)))
+		return (NULL);
 	one[348] = '\0';
-	memset(one, '0', 348);
+	ft_memset(one, '0', 348);
 	if ((*b).f == 1)
 	{
 		free(one);
@@ -77,9 +79,10 @@ char		*sw_round(char *two, int prec, int *f)
 {
 	char	*s;
 
-	s = (char*)malloc(sizeof(char) * 349);
+	if (!(s = (char*)malloc(sizeof(char) * 349)))
+		return (NULL);
 	s[348] = '\0';
-	memset(s, '0', 348);
+	ft_memset(s, '0', 348);
 	s[prec] = '5';
 	*f = arif_plus(s, two);
 	return (s);

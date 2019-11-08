@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_x_big_flag_ll.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:09 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 15:31:16 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 17:34:44 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		sw_x_big_flag_ll(unsigned long long a, t_flags *l)
 	if (l->precision > -1 || l->minus)
 		l->zero = 0;
 	if (a == 0)
-		return(sw_0if_zero_x(l));
+		return(sw_0if_zero(l));
 	k = 0;
 	len_print_hex_x_big_ll(a, 16, &k);
 	len = k;

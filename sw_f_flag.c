@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:48:48 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/05 15:34:23 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 16:26:32 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int			sw_if_minus(int len, t_flags *l, char **num, union common z)
 
 	i = 0;
 	sw_check_sign(&len, &i, l, z);
-	write(1, num[0], strlen(num[0]));
-	i += strlen(num[0]);
-	l->width -= strlen(num[0]);
+	write(1, num[0], ft_strlen(num[0]) - 1);
+	i += ft_strlen(num[0]) - 1;
+	l->width -= ft_strlen(num[0]) - 1;
 	if (l->grid)
 	{
 		write(1, ".", 1);
@@ -28,9 +28,9 @@ int			sw_if_minus(int len, t_flags *l, char **num, union common z)
 		len--;
 		l->width--;
 	}
-	write(1, num[1], strlen(num[1]));
-	i += strlen(num[1]);
-	l->width -= strlen(num[1]);
+	write(1, num[1], ft_strlen(num[1]) - 1);
+	i += ft_strlen(num[1]) - 1;
+	l->width -= ft_strlen(num[1]) - 1;
 	while (l->width > 0)
 	{
 		write(1, " ", 1);
@@ -52,9 +52,9 @@ int			sw_if_zero(int len, t_flags *l, char **num, union common z)
 		i++;
 		l->width--;
 	}
-	write(1, num[0], strlen(num[0]));
-	i += strlen(num[0]);
-	l->width -= strlen(num[0]);
+	write(1, num[0], ft_strlen(num[0]) - 1);
+	i += ft_strlen(num[0]) - 1;
+	l->width -= ft_strlen(num[0]) - 1;
 	if (l->grid)
 	{
 		write(1, ".", 1);
@@ -62,9 +62,9 @@ int			sw_if_zero(int len, t_flags *l, char **num, union common z)
 		len--;
 		l->width--;
 	}
-	write(1, num[1], strlen(num[1]));
-	i += strlen(num[1]);
-	l->width -= strlen(num[1]);
+	write(1, num[1], ft_strlen(num[1]) - 1);
+	i += ft_strlen(num[1]) - 1;
+	l->width -= ft_strlen(num[1]) - 1;
 	return (i);
 }
 
@@ -80,9 +80,9 @@ int			sw_if_else(int len, t_flags *l, char **num, union common z)
 		l->width--;
 	}
 	sw_check_sign(&len, &i, l, z);
-	write(1, num[0], strlen(num[0]));
-	i += strlen(num[0]);
-	l->width -= strlen(num[0]);
+	write(1, num[0], ft_strlen(num[0]) - 1);
+	i += ft_strlen(num[0]) - 1;
+	l->width -= ft_strlen(num[0]) - 1;
 	if (l->grid)
 	{
 		write(1, ".", 1);
@@ -90,9 +90,9 @@ int			sw_if_else(int len, t_flags *l, char **num, union common z)
 		len--;
 		l->width--;
 	}
-	write(1, num[1], strlen(num[1]));
-	i += strlen(num[1]);
-	l->width -= strlen(num[1]);
+	write(1, num[1], ft_strlen(num[1]) - 1);
+	i += ft_strlen(num[1]) - 1;
+	l->width -= ft_strlen(num[1]) - 1;
 	return (i);
 }
 
@@ -123,7 +123,7 @@ int			sw_f_flag(double a, t_flags *l)
 	if (l->precision > 0)
 		l->grid = 1;
 	num = set_num(z, l->precision);
-	len = strlen(num[0]) + l->grid + l->precision;
+	len = ft_strlen(num[0]) - 1 + l->grid + l->precision;
 	if ((l->plus || l->space) || z.t_double.s)
 		len++;
 	if (l->minus)

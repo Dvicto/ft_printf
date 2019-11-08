@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_f_add2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:34:43 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/08 15:39:45 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 16:15:57 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		*set_two(t_byte b, union common z, int prec, int *f)
 
 	two = (char*)malloc(sizeof(char) * 349);
 	two[348] = '\0';
-	memset(two, '0', 348);
+	ft_memset(two, '0', 348);
 	if (b.f == 0 && z.i != 0 && z.c != DBL_MIN && z.c != -DBL_MIN)
 	{
 		free(two);

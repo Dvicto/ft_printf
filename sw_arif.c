@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_arif.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 18:59:21 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/28 17:28:36 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 16:13:42 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ char	*arif_degree(int base, int st)
 	char	*s;
 	int		i;
 
-	s = (char*)malloc(sizeof(char) * 349);
+	if (!(s = (char*)malloc(sizeof(char) * 349)))
+		return (NULL);
 	s[348] = '\0';
-	memset(s, '0', 348);
+	ft_memset(s, '0', 348);
 	i = 347;
 	if (st == 0)
 	{
@@ -100,9 +101,10 @@ char	*arif_degree_f(int base, int st)
 	char	*s;
 
 	l = st;
-	s = (char*)malloc(sizeof(char) * 349);
+	if (!(s = (char*)malloc(sizeof(char) * 349)))
+		return (NULL);
 	s[348] = '\0';
-	memset(s, '0', 348);
+	ft_memset(s, '0', 348);
 	s[st - 1] = '1';
 	while (st > 0)
 	{
