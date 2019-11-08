@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_o_flag_ll.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:17 by swedde            #+#    #+#             */
-/*   Updated: 2019/10/30 20:01:17 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 15:35:20 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	print_hex_ll(unsigned long long a, unsigned base)
 	if (a > base - 1)
 		print_hex_ll(a / base, base);
 	write(1, &s[a % base], 1);
+	free(s);
 }
 
 static int sw_ifzero_o(t_flags *l)

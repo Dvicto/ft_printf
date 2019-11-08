@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   prntf2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 15:12:14 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 15:19:16 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./libft/libft.h"
 
-int				start_printf(va_list vl, char **s, int count_symb)
+int				start_printf(va_list vl, char **format, int count_symb)
 {
-	char **format;
-
-	format = s;
 	color(format);
 	if (*(*format) != '\0' && *(*format) == '%' && (*format)[1] == '%')
 	{

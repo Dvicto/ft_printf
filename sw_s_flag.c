@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_s_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:57:27 by nsheev            #+#    #+#             */
-/*   Updated: 2019/10/30 17:34:43 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 15:25:49 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,15 @@ int		sw_s_flag(char *s, t_flags *l)
 {
 	int		i;
 	int		len;
+	int		f;
 
 	i = 0;
+	f = 0;
 	if (!s)
+	{
 		s = set_null();
+		f = 1;
+	}
 	len = s_strlen(s);
 	if (l->precision != -1 && len > l->precision)
 		len = l->precision;
@@ -65,5 +70,7 @@ int		sw_s_flag(char *s, t_flags *l)
 		l->width--;
 		i++;
 	}
+	if (f)
+		free(s);
 	return (i);
 }

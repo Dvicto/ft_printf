@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_x_flag_ll.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:09 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/04 15:57:12 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 15:31:39 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	print_hex_x_ll(unsigned long long a, unsigned base)
 	if (a > base - 1)
 		print_hex_x_ll(a / base, base);
 	write(1, &s[a % base], 1);
+	free(s);
 }
 
 int		sw_x_flag_ll(unsigned long long a, t_flags *l)

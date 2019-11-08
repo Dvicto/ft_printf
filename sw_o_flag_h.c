@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sw_o_flag_h.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:17 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/06 18:07:37 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 15:35:01 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	print_hex_o_h(unsigned short a, unsigned base)
 	if (a > base - 1)
 		print_hex_o_h(a / base, base);
 	write(1, &s[a % base], 1);
+	free(s);
 }
 
 void	len_print_hex_o_h(unsigned short a, unsigned base, int *k)
