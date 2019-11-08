@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/07 00:07:08 by swedde           ###   ########.fr       */
+/*   Updated: 2019/11/08 18:33:17 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int					sw_s_flag(char *s, t_flags *l);
 int					sw_x_flag_ll(unsigned long long a, t_flags *l);
 int					sw_x_flag_l(unsigned long a, t_flags *l);
 int					sw_x_flag(unsigned a, t_flags *l);
-int					sw_0if_zero_x(t_flags *l);
 int					sw_x_big_flag_ll(unsigned long long a, t_flags *l);
 void				len_print_hex(unsigned a, unsigned base, int *k);
 void				print_hex(unsigned a, unsigned base);
@@ -140,6 +139,19 @@ int					sw_u_flag_hh(unsigned char a, t_flags *l);
 int					sw_u_flag_l(unsigned long a, t_flags *l);
 int					sw_o_flag_hh(unsigned char a, t_flags *l);
 int					sw_o_flag_h(unsigned short a, t_flags *l);
+
+
+void		sw_ft_putnbr_u_h(unsigned short nb);
+
+void	sw_ft_putnbr_u_hh(unsigned char nb);
+
+void	sw_ft_putnbr_u_l(unsigned long nb);
+
+void	sw_ft_putnbr_u_ll(unsigned long long nb);
+
+void		sw_ft_putnbr_u_cas(unsigned nb);
+void		len_print_hex_x_big_ll(unsigned long long a, unsigned base, int *k);
+void		print_hex_x_big_ll(unsigned long long a, unsigned base);
 
 
 #endif
