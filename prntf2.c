@@ -6,14 +6,14 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 15:19:16 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 16:22:26 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./libft/libft.h"
 
-int				start_printf(va_list vl, char **format, int count_symb)
+int					start_printf(va_list vl, char **format, int count_symb)
 {
 	color(format);
 	if (*(*format) != '\0' && *(*format) == '%' && (*format)[1] == '%')
@@ -42,11 +42,11 @@ int				start_printf(va_list vl, char **format, int count_symb)
 	return (count_symb);
 }
 
-int				start_parce(va_list vl, char **format)
+int					start_parce(va_list vl, char **format)
 {
-	t_flags		*flag;
-	char		*buf;
-	int			i;
+	t_flags			*flag;
+	char			*buf;
+	int				i;
 
 	buf = (char *)malloc(sizeof(char *) * 1);
 	buf[0] = '\0';
@@ -67,9 +67,9 @@ int				start_parce(va_list vl, char **format)
 	return (i);
 }
 
-void			parce_flags(char *buf, t_flags **flag)
+void				parce_flags(char *buf, t_flags **flag)
 {
-	size_t		i;
+	size_t			i;
 
 	i = 0;
 	while (i < ft_strlen(buf))
@@ -94,9 +94,9 @@ void			parce_flags(char *buf, t_flags **flag)
 	return ;
 }
 
-void			parce_flags2(char *buf, t_flags **flag)
+void				parce_flags2(char *buf, t_flags **flag)
 {
-	size_t		i;
+	size_t			i;
 
 	i = 0;
 	while (i < ft_strlen(buf))
@@ -104,10 +104,7 @@ void			parce_flags2(char *buf, t_flags **flag)
 		if (buf[0] == '0' || (buf[i] == '0' &&
 		(buf[i - 1] == ' ' || buf[i - 1] == '-' ||
 		buf[i - 1] == '+' || buf[i - 1] == '#')))
-		{
 			(*flag)->zero = 1;
-			//i++;
-		}
 		if (buf[i] >= '1' && buf[i] <= '9' && (*flag)->width == 0
 			&& (*flag)->precision == -1)
 		{
@@ -125,25 +122,12 @@ void			parce_flags2(char *buf, t_flags **flag)
 	return ;
 }
 
-void	precision(char *buf, t_flags **flag)
+int					cont1_parce(va_list vl, char *buf, t_flags **flag)
 {
-	size_t	i;
-
-	i = 0;
-	while (buf[i] != '.')
-		i++;
-	i++;
-	(*flag)->precision = ft_atoi(buf + i);
-	return ;
-}
-
-int		cont1_parce(va_list vl, char *buf, t_flags **flag)
-{
-	char	spec;
+	char			spec;
 
 	spec = buf[ft_strlen(buf) - 2];
 	parce_flags(buf, flag);
-	//printf("%d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n %d\n", (*flag)->grid, (*flag)->zero, (*flag)->minus, (*flag)->plus, (*flag)->space, (*flag)->l, (*flag)->lbig, (*flag)->h, (*flag)->width, (*flag)->precision);
 	if (spec == 'd' || spec == 'i' || spec == 'o' || spec == 'u' || spec == 'x'
 			|| spec == 'X')
 		return (lets_go_dioux(vl, flag, spec));

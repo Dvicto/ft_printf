@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+         #
+#    By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/07 00:15:02 by swedde            #+#    #+#              #
-#    Updated: 2019/11/08 15:05:08 by nsheev           ###   ########.fr        #
+#    Updated: 2019/11/08 16:41:33 by dvictor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ sw_u_flag_h.c \
 sw_u_flag_hh.c \
 sw_u_flag_l.c \
 sw_o_flag_hh.c \
-sw_o_flag_h.c
+sw_o_flag_h.c \
+sw_i_norme_1.c
 
 OBJ = $(SRC:%.c=%.o)
 

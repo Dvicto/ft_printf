@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/07 00:07:08 by swedde           ###   ########.fr       */
+/*   Updated: 2019/11/08 16:30:32 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include "./libft/libft.h"
-#include <stdint.h>
-#include <stdarg.h>
-#include <float.h>
-#include <limits.h>
+# include "./libft/libft.h"
+# include <stdint.h>
+# include <stdarg.h>
+# include <float.h>
+# include <limits.h>
 
 # define RESET      "\033[0m"
 # define BOLD       "\033[1m"
@@ -32,14 +32,14 @@
 
 typedef struct		s_flags
 {
-	int				grid;//#
-	int				zero;//"0"
-	int				minus;//"-"
-	int				plus;//"+"
-	int				space;//" "
-	int				l;//"l   /   ll"
-	int				lbig;//"L"
-	int				h;//" h     /   hh"
+	int				grid;
+	int				zero;
+	int				minus;
+	int				plus;
+	int				space;
+	int				l;
+	int				lbig;
+	int				h;
 	int				width;
 	int				precision;
 }					t_flags;
@@ -50,26 +50,27 @@ typedef struct		s_buf_fl
 	struct s_buf_fl	*next;
 }					t_buf_fl;
 
-union	common
+union				common
 {
-	double c;
-	int64_t i;
-	struct s_double
+	double			c;
+	int64_t			i;
+	struct			s_double
 	{
 		long int	m:52;
 		int			p:11;
 		int			s:1;
-	}t_double;
+	}				t_double;
 };
 
-typedef struct	s_byte
+typedef struct		s_byte
 {
 	int				m;
 	int				p;
 	int				por;
 	int				f;
-}				t_byte;
-void    			color(char **format);
+}					t_byte;
+
+void				color(char **format);
 int					ft_printf(const char *format, ...);
 int					sw_p_flag(void *a, t_flags *l);
 int					sw_s_flag(char *s, t_flags *l);
@@ -80,8 +81,6 @@ int					sw_0if_zero_x(t_flags *l);
 int					sw_x_big_flag_ll(unsigned long long a, t_flags *l);
 void				len_print_hex(unsigned a, unsigned base, int *k);
 void				print_hex(unsigned a, unsigned base);
-
-
 int					final_putstr(char *str);
 int					final_putchar(char c);
 int					ft_printf(const char *format, ...);
@@ -92,12 +91,9 @@ void				parce_flags2(char *buf, t_flags **flag);
 void				precision(char *buf, t_flags **flag);
 int					cont1_parce(va_list vl, char *buf, t_flags **flag);
 t_flags				*newflags();
-
 int					sw_i_flag_ll(long long a, t_flags *l);
 char				*str_cut(char *str, int n);
-//char				*add_start_str(char *str, char *added);
 char				*add_start_char(char **str, char c);
-
 int					lets_go_dioux(va_list vl, t_flags **flag, char spec);
 int					lets_go_fcsp(va_list vl, t_flags **flag, char spec);
 int					lets_go_d(va_list vl, t_flags **flag);
@@ -125,7 +121,6 @@ char				**set_num(union common z, int prec);
 void				sw_check_sign(int *len, int *i, t_flags *l, union common z);
 void				sw_ft_putnbr_ll(long long nb);
 void				print_hex(unsigned a, unsigned base);
-
 int					sw_0if_zero(t_flags *l);
 int					sw_i_flag_l(long a, t_flags *l);
 int					sw_i_flag(int a, t_flags *l);
@@ -140,6 +135,5 @@ int					sw_u_flag_hh(unsigned char a, t_flags *l);
 int					sw_u_flag_l(unsigned long a, t_flags *l);
 int					sw_o_flag_hh(unsigned char a, t_flags *l);
 int					sw_o_flag_h(unsigned short a, t_flags *l);
-
 
 #endif

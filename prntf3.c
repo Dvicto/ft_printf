@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:35:38 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/06 19:25:09 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 16:22:59 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int		lets_go_fcsp(va_list vl, t_flags **flag, char spec)
 			a = va_arg(vl, long double);
 			if (a == -LDBL_MIN)
 				a = -DBL_MIN;
-			return sw_f_flag((double)a, *flag);
+			return (sw_f_flag((double)a, *flag));
 		}
-		return sw_f_flag(va_arg(vl, double), *flag);
+		return (sw_f_flag(va_arg(vl, double), *flag));
 	}
 	return (0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sw_i_flag_h.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/06 16:40:57 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/08 16:39:28 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		sw_ft_putnbr_i_h(short nb)
+static void			sw_ft_putnbr_i_h(short nb)
 {
 	if (nb == -32768)
 	{
@@ -41,7 +41,7 @@ static int			sw_length_h(short a)
 	return (i);
 }
 
-static void	sw_check_sign_1_h(int *len, int *i, t_flags *l, short a)
+static void			sw_check_sign_1_h(int *len, int *i, t_flags *l, short a)
 {
 	if (a < 0)
 	{
@@ -66,9 +66,9 @@ static void	sw_check_sign_1_h(int *len, int *i, t_flags *l, short a)
 	}
 }
 
-static int	sw_if_minus_h(int *len, t_flags *l, short a)
+static int			sw_if_minus_h(int *len, t_flags *l, short a)
 {
-	int		i;
+	int				i;
 
 	i = 0;
 	sw_check_sign_1_h(len, &i, l, a);
@@ -91,9 +91,9 @@ static int	sw_if_minus_h(int *len, t_flags *l, short a)
 	return (i);
 }
 
-static int	sw_if_zero_h(int *len, t_flags *l, short a)
+static int			sw_if_zero_h(int *len, t_flags *l, short a)
 {
-	int		i;
+	int				i;
 
 	i = 0;
 	sw_check_sign_1_h(len, &i, l, a);
@@ -108,9 +108,9 @@ static int	sw_if_zero_h(int *len, t_flags *l, short a)
 	return (i);
 }
 
-static int	sw_if_else_h(int *len, t_flags *l, short a)
+static int			sw_if_else_h(int *len, t_flags *l, short a)
 {
-	int		i;
+	int				i;
 
 	i = 0;
 	while (l->width > *len)
@@ -133,27 +133,4 @@ static int	sw_if_else_h(int *len, t_flags *l, short a)
 	sw_ft_putnbr_i_h(a);
 	i += sw_length_h(a);
 	return (i);
-}
-
-int			sw_i_flag_h(short a, t_flags *l)
-{
-	int		len;
-
-	len = sw_length_h(a);
-	if (a == 0)
-	{
-		return (sw_0if_zero(l));
-	}
-	if (l->minus || l->precision > -1)
-		l->zero = 0;
-	if (l->precision > len)
-		len = l->precision;
-	if (a < 0 || l->plus || l->space)
-		len++;
-	if (l->minus)
-		return (sw_if_minus_h(&len, l, a));
-	else if (l->zero)
-		return (sw_if_zero_h(&len, l, a));
-	else
-		return (sw_if_else_h(&len, l, a));		
 }
