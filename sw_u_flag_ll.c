@@ -1,58 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sw_i_flag_l.c                                      :+:      :+:    :+:   */
+/*   sw_u_flag_ll.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 19:08:06 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 17:50:14 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		sw_check_sign_1(int *len, int *i, t_flags *l, long a)
+static int	sw_length(unsigned long long a)
 {
-	if (a < 0)
+	int i;
+
+	if (!a)
+		return (1);
+	i = 0;
+	while (a)
 	{
-		write(1, "-", 1);
-		(*i)++;
-		(*len)--;
-		l->width--;
+		i++;
+		a /= 10;
 	}
-	if (l->plus && a > -1)
-	{
-		write(1, "+", 1);
-		(*i)++;
-		(*len)--;
-		l->width--;
-	}
-	if (l->space && !l->plus && a > -1)
-	{
-		write(1, " ", 1);
-		(*i)++;
-		(*len)--;
-		l->width--;
-	}
+	return (i);
 }
 
-static int		sw_if_minus(int *len, t_flags *l, long a)
+static int	sw_if_minus(t_flags *l, unsigned long long a)
 {
-	int			i;
+	int		i;
 
 	i = 0;
-	sw_check_sign_1(len, &i, l, a);
-	while (l->precision > sw_length_l(a))
+	while (l->precision > sw_length(a))
 	{
 		write(1, "0", 1);
 		i++;
 		l->precision--;
 		l->width--;
 	}
-	sw_ft_putnbr_l(a);
-	i += sw_length_l(a);
-	l->width -= sw_length_l(a);
+	sw_ft_putnbr_u_ll(a);
+	i += sw_length(a);
+	l->width -= sw_length(a);
 	while (l->width > 0)
 	{
 		write(1, " ", 1);
@@ -62,26 +51,25 @@ static int		sw_if_minus(int *len, t_flags *l, long a)
 	return (i);
 }
 
-static int		sw_if_zero(int *len, t_flags *l, long a)
+static int	sw_if_zero(int *len, t_flags *l, unsigned long long a)
 {
-	int			i;
+	int		i;
 
 	i = 0;
-	sw_check_sign_1(len, &i, l, a);
 	while (l->width > *len)
 	{
 		write(1, "0", 1);
 		i++;
 		l->width--;
 	}
-	sw_ft_putnbr_l(a);
-	i += sw_length_l(a);
+	sw_ft_putnbr_u_ll(a);
+	i += sw_length(a);
 	return (i);
 }
 
-static int		sw_if_else(int *len, t_flags *l, long a)
+static int	sw_if_else(int *len, t_flags *l, unsigned long long a)
 {
-	int			i;
+	int		i;
 
 	i = 0;
 	while (l->width > *len)
@@ -94,23 +82,22 @@ static int		sw_if_else(int *len, t_flags *l, long a)
 	{
 		write(1, " ", 1);
 	}
-	sw_check_sign_1(len, &i, l, a);
-	while (l->precision > sw_length_l(a))
+	while (l->precision > sw_length(a))
 	{
 		write(1, "0", 1);
 		i++;
 		l->precision--;
 	}
-	sw_ft_putnbr_l(a);
-	i += sw_length_l(a);
+	sw_ft_putnbr_u_ll(a);
+	i += sw_length(a);
 	return (i);
 }
 
-int				sw_i_flag_l(long a, t_flags *l)
+int			sw_u_flag_ll(unsigned long long a, t_flags *l)
 {
-	int			len;
+	int		len;
 
-	len = sw_length_l(a);
+	len = sw_length(a);
 	if (a == 0)
 	{
 		return (sw_0if_zero(l));
@@ -119,10 +106,10 @@ int				sw_i_flag_l(long a, t_flags *l)
 		l->zero = 0;
 	if (l->precision > len)
 		len = l->precision;
-	if (a < 0 || l->plus || l->space)
+	if (l->space)
 		len++;
 	if (l->minus)
-		return (sw_if_minus(&len, l, a));
+		return (sw_if_minus(l, a));
 	else if (l->zero)
 		return (sw_if_zero(&len, l, a));
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artem <artem@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:08:34 by dvictor           #+#    #+#             */
-/*   Updated: 2019/10/18 12:22:14 by artem            ###   ########.fr       */
+/*   Updated: 2019/11/08 19:04:11 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_itoa(int n)
 
 	len = n;
 	i = ft_lennbr(len);
-	if (!(s = (char *)ft_memalloc((size_t) i + 1)))
+	if (!(s = (char *)ft_memalloc((size_t)i + 1)))
 		return (NULL);
 	s[i] = '\0';
 	i--;

@@ -6,16 +6,16 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:07:36 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 16:12:16 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 19:10:34 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			lets_go_d(va_list vl, t_flags **flag)
+int					lets_go_d(va_list vl, t_flags **flag)
 {
-	short	a;
-	char	b;
+	short			a;
+	char			b;
 
 	if ((*flag)->h == 1)
 	{
@@ -117,7 +117,10 @@ int					lets_go_x_big(va_list vl, t_flags **flag)
 		return (sw_x_big_flag_ll((unsigned long long)b, *flag));
 	}
 	if ((*flag)->l == 1)
-		return (sw_x_big_flag_ll((unsigned long long)va_arg(vl, unsigned long), *flag));
+	{
+		return (sw_x_big_flag_ll((unsigned long long)va_arg(vl, unsigned long),
+			*flag));
+	}
 	if ((*flag)->l == 2)
 		return (sw_x_big_flag_ll(va_arg(vl, unsigned long long), *flag));
 	return (sw_x_big_flag_ll((unsigned long long)va_arg(vl, unsigned), *flag));

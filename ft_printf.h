@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/08 18:14:06 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 18:54:22 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int					sw_s_flag(char *s, t_flags *l);
 int					sw_x_flag_ll(unsigned long long a, t_flags *l);
 int					sw_x_flag_l(unsigned long a, t_flags *l);
 int					sw_x_flag(unsigned a, t_flags *l);
-int					sw_0if_zero_x(t_flags *l);
 int					sw_x_big_flag_ll(unsigned long long a, t_flags *l);
 void				len_print_hex(unsigned a, unsigned base, int *k);
 void				print_hex(unsigned a, unsigned base);
@@ -146,5 +145,12 @@ void				sw_ft_putnbr_i_hh(char nb);
 int					sw_length_hh(char a);
 void				sw_ft_putnbr_i_h(short nb);
 int					sw_length_h(short a);
+void		sw_ft_putnbr_u_h(unsigned short nb);
+void	sw_ft_putnbr_u_hh(unsigned char nb);
+void	sw_ft_putnbr_u_l(unsigned long nb);
+void	sw_ft_putnbr_u_ll(unsigned long long nb);
+void		sw_ft_putnbr_u_cas(unsigned nb);
+void		len_print_hex_x_big_ll(unsigned long long a, unsigned base, int *k);
+void		print_hex_x_big_ll(unsigned long long a, unsigned base);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 18:11:41 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 19:08:14 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ static int		sw_if_else(int *len, t_flags *l, long long a)
 	return (i);
 }
 
-int					sw_i_flag_ll(long long a, t_flags *l)
+int				sw_i_flag_ll(long long a, t_flags *l)
 {
-	int				len;
+	int			len;
 
 	len = sw_length_ll(a);
 	if (a == 0)
