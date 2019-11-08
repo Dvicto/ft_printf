@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sw_i_norme_1.c                                     :+:      :+:    :+:   */
+/*   sw_i_norme_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 16:40:40 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 18:19:14 by dvictor          ###   ########.fr       */
+/*   Created: 2019/11/08 18:05:59 by dvictor           #+#    #+#             */
+/*   Updated: 2019/11/08 18:21:29 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		sw_ft_putnbr_l(long nb)
+int				sw_length_i(int a)
 {
-	if (nb == LONG_MIN)
-	{
-		write(1, "9223372036854775808", 19);
-		return ;
-	}
-	if (nb < 0)
-		nb = nb * (-1);
-	if (nb / 10)
-		sw_ft_putnbr_l(nb / 10);
-	ft_putchar(nb % 10 + 48);
-}
-
-int			sw_length_l(long a)
-{
-	int		i;
+	int			i;
 
 	if (!a)
 		return (1);
@@ -41,23 +27,23 @@ int			sw_length_l(long a)
 	return (i);
 }
 
-void		sw_ft_putnbr_ll(long long nb)
+void			sw_ft_putnbr_i_hh(char nb)
 {
-	if (nb == LLONG_MIN)
+	if (nb == -128)
 	{
-		write(1, "9223372036854775808", 19);
+		write(1, "128", 3);
 		return ;
 	}
 	if (nb < 0)
 		nb = nb * (-1);
 	if (nb / 10)
-		sw_ft_putnbr_ll(nb / 10);
+		sw_ft_putnbr_i_hh(nb / 10);
 	ft_putchar(nb % 10 + 48);
 }
 
-int			sw_length_ll(long long a)
+int				sw_length_hh(char a)
 {
-	int		i;
+	int			i;
 
 	if (!a)
 		return (1);
@@ -70,16 +56,31 @@ int			sw_length_ll(long long a)
 	return (i);
 }
 
-void		sw_ft_putnbr_i(int nb)
+void			sw_ft_putnbr_i_h(short nb)
 {
-	if (nb == -2147483648)
+	if (nb == -32768)
 	{
-		write(1, "2147483648", 10);
+		write(1, "32768", 5);
 		return ;
 	}
 	if (nb < 0)
 		nb = nb * (-1);
 	if (nb / 10)
-		sw_ft_putnbr_i(nb / 10);
+		sw_ft_putnbr_i_h(nb / 10);
 	ft_putchar(nb % 10 + 48);
+}
+
+int				sw_length_h(short a)
+{
+	int			i;
+
+	if (!a)
+		return (1);
+	i = 0;
+	while (a)
+	{
+		i++;
+		a /= 10;
+	}
+	return (i);
 }

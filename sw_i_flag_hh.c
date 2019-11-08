@@ -6,40 +6,11 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 23:24:25 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 16:40:14 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/08 18:11:43 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void			sw_ft_putnbr_i_hh(char nb)
-{
-	if (nb == -128)
-	{
-		write(1, "128", 3);
-		return ;
-	}
-	if (nb < 0)
-		nb = nb * (-1);
-	if (nb / 10)
-		sw_ft_putnbr_i_hh(nb / 10);
-	ft_putchar(nb % 10 + 48);
-}
-
-static int			sw_length_hh(char a)
-{
-	int i;
-
-	if (!a)
-		return (1);
-	i = 0;
-	while (a)
-	{
-		i++;
-		a /= 10;
-	}
-	return (i);
-}
 
 static void			sw_check_sign_1hh(int *len, int *i, t_flags *l, char a)
 {
@@ -133,4 +104,27 @@ static int			sw_if_else_hh(int *len, t_flags *l, char a)
 	sw_ft_putnbr_i_hh(a);
 	i += sw_length_hh(a);
 	return (i);
+}
+
+int					sw_i_flag_hh(char a, t_flags *l)
+{
+	int				len;
+
+	len = sw_length_hh(a);
+	if (a == 0)
+	{
+		return (sw_0if_zero(l));
+	}
+	if (l->minus || l->precision > -1)
+		l->zero = 0;
+	if (l->precision > len)
+		len = l->precision;
+	if (a < 0 || l->plus || l->space)
+		len++;
+	if (l->minus)
+		return (sw_if_minus_hh(&len, l, a));
+	else if (l->zero)
+		return (sw_if_zero_hh(&len, l, a));
+	else
+		return (sw_if_else_hh(&len, l, a));
 }
