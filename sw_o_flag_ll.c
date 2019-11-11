@@ -6,123 +6,110 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 23:37:17 by swedde            #+#    #+#             */
-/*   Updated: 2019/11/08 20:43:56 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/11 19:26:50 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int		sw_o_min(t_flags *l, unsigned long long a, int *i, t_ofl str)
+static void		strt_min(t_flags *l, unsigned long long a, t_o_struc z, int *i)
 {
-	if (str.g)
+	if (z.g)
 	{
 		write(1, "0", 1);
-		str.len--;
+		z.len--;
 		(*i)++;
 		l->width--;
 	}
-	while (str.len > str.k)
+	while (z.len > z.k)
 	{
 		write(1, "0", 1);
 		(*i)++;
-		str.len--;
+		z.len--;
 		l->width--;
 	}
-	print_hex_o_ll(a, 8);
-	(*i) = (*i) + str.k;
-	l->width = l->width - str.k;
+}
+
+static void		if_min_o(t_flags *l, unsigned long long a, t_o_struc z, int *i)
+{
+	strt_min(l, a, z, i);
+	if (!z.g && a == 0 && l->precision == 0)
+	{
+		write(1, " ", 1);
+		(*i)++;
+		l->width--;
+	}
+	else
+	{
+		print_hex_ll_o(a, 8);
+		(*i) = (*i) + z.k;
+		l->width = l->width - z.k;
+	}
 	while (l->width > 0)
 	{
 		write(1, " ", 1);
 		(*i)++;
 		l->width--;
 	}
-	return (*i);
 }
 
-static int		sw_o_zer(t_flags *l, unsigned long long a, int *i, t_ofl str)
+static void		if_zer_o(t_flags *l, unsigned long long a, t_o_struc z, int *i)
 {
-	if (str.g)
+	if (z.g)
 	{
 		write(1, "0", 1);
 		(*i)++;
 		l->width--;
 	}
-	while (l->width > str.k)
+	while (l->width > z.k)
 	{
 		write(1, "0", 1);
 		(*i)++;
 		l->width--;
 	}
-	print_hex_o_ll(a, 8);
-	(*i) = (*i) + str.k;
-	return (*i);
+	print_hex_ll_o(a, 8);
+	(*i) = (*i) + z.k;
 }
 
-static int		sw_o_els(t_flags *l, unsigned long long a, int *i, t_ofl str)
+static void		if_els_o(t_flags *l, unsigned long long a, t_o_struc z, int *i)
 {
-	while (l->width > str.len)
+	while (l->width > z.len)
 	{
 		write(1, " ", 1);
 		(*i)++;
 		l->width--;
 	}
-	if (str.g)
+	if (z.g)
 	{
 		write(1, "0", 1);
-		str.len--;
+		z.len--;
 		(*i)++;
 		l->width--;
 	}
-	while (str.len > str.k)
+	while (z.len > z.k)
 	{
 		write(1, "0", 1);
 		(*i)++;
-		str.len--;
+		z.len--;
 	}
-	print_hex_o_ll(a, 8);
-	(*i) = (*i) + str.k;
-	return (*i);
-}
-
-static t_ofl			sw_set_o_str(unsigned long long a, t_flags *l)
-{
-	t_ofl		str;
-
-	str.k = 0;
-	len_print_hex_o_ll(a, 8, &str.k);
-	str.len = str.k;
-	if (l->grid && ((l->precision <= str.k && !l->zero) || l->minus))
-	{
-		str.len++;
-		str.g = 1;
-	}
-	else
-	{
-		str.g = 0;
-	}
-	if (str.len < l->precision)
-		str.len = l->precision;
-	return (str);
+	print_hex_ll_o(a, 8);
+	(*i) = (*i) + z.k;
 }
 
 int				sw_o_flag_ll(unsigned long long a, t_flags *l)
 {
-	int		i;
-	t_ofl	str;
+	int			i;
+	t_o_struc	z;
 
 	if (a == 0)
 		return (sw_ifzero_o(l));
-	str = sw_set_o_str(a, l);
-	if (l->precision > -1 || l->minus)
-		l->zero = 0;
-	if (a == 0)
-		l->grid = 0;
+	sw_set_param_o_cas(l, a, &z);
 	i = 0;
 	if (l->minus)
-		return (sw_o_min(l, a, &i, str));
+		if_min_o(l, a, z, &i);
 	else if (l->zero)
-		return (sw_o_zer(l, a, &i, str));
+		if_zer_o(l, a, z, &i);
 	else
-		return (sw_o_els(l, a, &i, str));
+		if_els_o(l, a, z, &i);
+	return (i);
 }

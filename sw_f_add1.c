@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sw_f_add1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:26:58 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/08 16:21:23 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/11 18:40:46 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_byte		set_byte_srtuct(union common z)
+t_byte		set_byte_srtuct(union u_common z)
 {
 	t_byte b;
 
@@ -46,7 +46,7 @@ void		sw_increase(char *one)
 	free(s);
 }
 
-char		*set_one(t_byte *b, union common z)
+char		*set_one(t_byte *b, union u_common z)
 {
 	char	*one;
 	char	*buf;

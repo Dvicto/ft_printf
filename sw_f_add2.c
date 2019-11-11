@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sw_f_add2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:34:43 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/08 16:15:57 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/11 18:41:28 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*set_two(t_byte b, union common z, int prec, int *f)
+char		*set_two(t_byte b, union u_common z, int prec, int *f)
 {
 	char	*two;
 	char	*buf;
@@ -41,7 +41,7 @@ char		*set_two(t_byte b, union common z, int prec, int *f)
 	return (two);
 }
 
-char		**set_num(union common z, int prec)
+char		**set_num(union u_common z, int prec)
 {
 	char	**num;
 	t_byte	b;
@@ -66,7 +66,7 @@ char		**set_num(union common z, int prec)
 	return (num);
 }
 
-void		sw_check_sign(int *len, int *i, t_flags *l, union common z)
+void		sw_check_sign(int *len, int *i, t_flags *l, union u_common z)
 {
 	if (z.t_double.s || l->space || l->plus)
 	{

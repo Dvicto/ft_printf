@@ -3,103 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   sw_p_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:17:11 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 00:45:26 by swedde           ###   ########.fr       */
+/*   Updated: 2019/11/11 18:48:26 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-union u_double
+static	void	sw_p_norm3(int *k, unsigned long *num, int *len, t_flags *l)
 {
-	void	*p;
-	int64_t	byte;
-};
+	(*k) = 0;
+	long_print_hex_len(*num, 16, k);
+	(*len) = (*k) + 2;
+	if (l->precision > -1 || l->minus)
+		l->zero = 0;
+	if (l->precision > (*k))
+		(*len) = l->precision + 2;
+	if (l->plus || l->space)
+		(*len)++;
+	if (l->zero && l->width > (*len))
+		(*len) = l->width;
+}
 
-static unsigned long	sw_degree_1(unsigned long base, int i)
+static	void	sw_p_norm2(int *i, int *len, t_flags *l)
 {
-	unsigned long sw;
-
-	sw = 1;
-	while (i)
+	while (l->width > (*len) && !l->minus)
 	{
-		sw = sw * base;
-		i--;
+		write(1, " ", 1);
+		(*i)++;
+		l->width--;
 	}
-	return (sw);
-}
-
-void	long_print_hex_len(unsigned long int a, unsigned long base, int *k) //long -> unsigned
-{
-	if (a > base - 1)
-		long_print_hex_len(a / base, base, k);
-	(*k)++;
-}
-
-void	long_print_hex(unsigned long a, unsigned long base)
-{
-	char s[17] = "0123456789abcdef";
-	if (a > base - 1)
-		long_print_hex(a / base, base);
-	write(1, &s[a % base], 1);
-}
-
-int		if_p_null(t_flags *l)
-{
-	int n;
-	int i;
-
-	i = 0;
-	if (l->precision == 0)
-		n = 2;
-	else
-		n = 3;
-	if (l->minus)
+	if (l->plus)
 	{
-		write(1, "0x0", n);
-		i = n;
-		while (l->precision - 1> 0)
-		{
-			write(1, "0", 1);
-			i++;
-			l->precision--;
-		}
-		while (l->width - n > 0)
-		{
-			write(1, " ", 1);
-			i++;
-			l->width--;
-		}
+		write(1, "+", 1);
+		(*i)++;
+		(*len)--;
+		l->width--;
 	}
-	else
+	if (l->space && !l->plus)
 	{
-		while (l->width - n > 0)
-		{
-			write(1, " ", 1);
-			i++;
-			l->width--;
-		}
-		write(1, "0x0", n);
-		i += n;
-		while (l->precision - 1 > 0)
-		{
-			write(1, "0", 1);
-			i++;
-			l->precision--;
-		}
+		write(1, " ", 1);
+		(*i)++;
+		(*len)--;
+		l->width--;
 	}
-	return (i);
 }
 
-int		sw_p_flag(void *a, t_flags *l)
+static	void	sw_p_norm1(int *len, int *i, int *k, t_flags *l)
 {
-	union	u_double	z;
+	write(1, "0x", 2);
+	(*i) += 2;
+	(*len) -= 2;
+	l->width -= 2;
+	while (l->zero && l->width > (*k))
+	{
+		write(1, "0", 1);
+		(*i)++;
+		(*len)--;
+		l->width--;
+	}
+	while (l->precision > (*k))
+	{
+		write(1, "0", 1);
+		(*i)++;
+		(*len)--;
+		l->precision--;
+		l->width--;
+	}
+}
+
+static	void	sw_p_norm4(int *i, int *k, t_flags *l)
+{
+	(*i) += (*k);
+	l->width -= (*k);
+	while (l->width > 0)
+	{
+		write(1, " ", 1);
+		(*i)++;
+		l->width--;
+	}
+}
+
+int				sw_p_flag(void *a, t_flags *l, int len, int i)
+{
+	union u_double		z;
 	unsigned long		num;
 	int					sw;
-	int					len;
-	int					i;
 	int					k;
 
 	sw = 63;
@@ -112,66 +103,12 @@ int		sw_p_flag(void *a, t_flags *l)
 			num = num + sw_degree_1(2, sw);
 		sw--;
 	}
-	k = 0;
-	long_print_hex_len(num, 16, &k);
-	len = k + 2;
-	if (l->precision > -1 || l->minus)
-		l->zero = 0;
-	if (l->precision > k)
-		len = l->precision + 2;
-	if (l->plus || l->space)
-		len++;
-	if (l->zero && l->width > len)
-		len = l->width;
+	sw_p_norm3(&k, &num, &len, l);
 	if (a == NULL)
-		return(if_p_null(l));
-	while (l->width > len && !l->minus)
-	{
-		write(1, " ", 1);
-		i++;
-		l->width--;
-	}
-	if (l->plus)
-	{
-		write(1, "+", 1);
-		i++;
-		len--;
-		l->width--;
-	}
-	if (l->space && !l->plus)
-	{
-		write(1, " ", 1);
-		i++;
-		len--;
-		l->width--;
-	}
-	write(1, "0x", 2);
-	i += 2;
-	len -= 2;
-	l->width -= 2;
-	while (l->zero && l->width > k)
-	{
-		write(1, "0", 1);
-		i++;
-		len--;
-		l->width--;
-	}
-	while (l->precision > k)
-	{
-		write(1, "0", 1);
-		i++;
-		len--;
-		l->precision--;
-		l->width--;
-	}
+		return (if_p_null(l));
+	sw_p_norm2(&i, &len, l);
+	sw_p_norm1(&len, &i, &k, l);
 	long_print_hex(num, 16);
-	i += k;
-	l->width -= k;
-	while (l->width > 0)
-	{
-		write(1, " ", 1);
-		i++;
-		l->width--;
-	}
+	sw_p_norm4(&i, &k, l);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:32:32 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/08 20:44:10 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/11 19:58:33 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
 
 typedef struct		s_ofl
 {
-	int 			k;
-	int 			len;
-	int 			g;
+	int				k;
+	int				len;
+	int				g;
 }					t_ofl;
 
 typedef struct		s_flags
@@ -57,7 +57,7 @@ typedef struct		s_buf_fl
 	struct s_buf_fl	*next;
 }					t_buf_fl;
 
-union				common
+union				u_common
 {
 	double			c;
 	int64_t			i;
@@ -67,7 +67,7 @@ union				common
 		int			p:11;
 		int			s:1;
 	}				t_double;
-}					;
+};
 
 typedef struct		s_byte
 {
@@ -77,9 +77,22 @@ typedef struct		s_byte
 	int				f;
 }					t_byte;
 
+union				u_double
+{
+	void			*p;
+	int64_t			byte;
+};
+
+typedef struct		s_o_struc
+{
+	int k;
+	int len;
+	int g;
+}					t_o_struc;
+
 void				color(char **format);
 int					ft_printf(const char *format, ...);
-int					sw_p_flag(void *a, t_flags *l);
+int					sw_p_flag(void *a, t_flags *l, int len, int i);
 int					sw_s_flag(char *s, t_flags *l, int i, int f);
 int					sw_x_flag_ll(unsigned long long a, t_flags *l);
 int					sw_x_flag_l(unsigned long a, t_flags *l);
@@ -117,14 +130,15 @@ char				*arif_degree(int base, int st);
 char				*arif_degree_f(int base, int st);
 int					sw_f_flag(double a, t_flags *l);
 int					sw_degree(int base, int i);
-t_byte				set_byte_srtuct(union common z);
+t_byte				set_byte_srtuct(union u_common z);
 void				sw_increase(char *one);
-char				*set_one(t_byte *b, union common z);
+char				*set_one(t_byte *b, union u_common z);
 char				*sw_round(char *two, int prec, int *f);
 void				set_two_continue(char **two, int prec, int *f);
-char				*set_two(t_byte b, union common z, int prec, int *f);
-char				**set_num(union common z, int prec);
-void				sw_check_sign(int *len, int *i, t_flags *l, union common z);
+char				*set_two(t_byte b, union u_common z, int prec, int *f);
+char				**set_num(union u_common z, int prec);
+void				sw_check_sign(int *len, int *i, t_flags *l,
+						union u_common z);
 void				sw_ft_putnbr_ll(long long nb);
 void				print_hex(unsigned a, unsigned base);
 int					sw_0if_zero(t_flags *l);
@@ -132,16 +146,13 @@ int					sw_i_flag_l(long a, t_flags *l);
 int					sw_i_flag(int a, t_flags *l);
 int					sw_u_flag_ll(unsigned long long a, t_flags *l);
 int					sw_o_flag_ll(unsigned long long a, t_flags *l);
-int					sw_o_flag_l(unsigned long a, t_flags *l);
 int					sw_i_flag_h(short a, t_flags *l);
 int					sw_i_flag_hh(char a, t_flags *l);
 int					sw_u_flag(unsigned a, t_flags *l);
 int					sw_u_flag_h(unsigned short a, t_flags *l);
 int					sw_u_flag_hh(unsigned char a, t_flags *l);
 int					sw_u_flag_l(unsigned long a, t_flags *l);
-int					sw_o_flag_hh(unsigned char a, t_flags *l);
-int					sw_o_flag_h(unsigned short a, t_flags *l);
-
+unsigned long		sw_degree_1(unsigned long base, int i);
 void				sw_ft_putnbr_l(long nb);
 int					sw_length_l(long a);
 void				sw_ft_putnbr_ll(long long nb);
@@ -157,22 +168,30 @@ void				sw_ft_putnbr_u_hh(unsigned char nb);
 void				sw_ft_putnbr_u_l(unsigned long nb);
 void				sw_ft_putnbr_u_ll(unsigned long long nb);
 void				sw_ft_putnbr_u_cas(unsigned nb);
-void				len_print_hex_x_big_ll(unsigned long long a, unsigned base, int *k);
+void				len_print_hex_x_big_ll(unsigned long long a,
+						unsigned base, int *k);
 void				print_hex_x_big_ll(unsigned long long a, unsigned base);
-void				len_print_hex_x_ll(unsigned long long a, unsigned base, int *k);
-void				print_hex_x_ll(unsigned long long a, unsigned base);
+void				len_print_hex_x_ll(unsigned long long a,
+						unsigned base, int *k);
+void				print_hex_x_ll(unsigned long long a,
+						unsigned base);
 void				len_print_hex_x_l(unsigned long a, unsigned base, int *k);
 void				print_hex_x_l(unsigned long a, unsigned base);
 void				len_print_hex_x(unsigned a, unsigned base, int *k);
 void				print_hex_x(unsigned a, unsigned base);
-void				print_hex_o_h(unsigned short a, unsigned base);
-void				len_print_hex_o_h(unsigned short a, unsigned base, int *k);
-void				print_hex_o_hh(unsigned char a, unsigned base);
-void				len_print_hex_o_hh(unsigned char a, unsigned base, int *k);
-void				print_hex_o_l(unsigned long a, unsigned base);
-void				len_print_hex_o_l(unsigned long a, unsigned base, int *k);
-void				print_hex_o_ll(unsigned long long a, unsigned base);
-void				len_print_hex_o_ll(unsigned long long a, unsigned base, int *k);
-int		sw_ifzero_o(t_flags *l);
+void				len_print_hex_o_ll(unsigned long long a,
+						unsigned base, int *k);
+void				long_print_hex_len(unsigned long int a,
+						unsigned long base, int *k);
+void				long_print_hex(unsigned long a, unsigned long base);
+int					if_p_null(t_flags *l);
+int					sw_ifzero_o(t_flags *l);
+void				len_print_hex_ll_o_o(unsigned long long a,
+						unsigned base, int *k);
+void				print_hex_ll_o(unsigned long long a, unsigned base);
+void				sw_set_param_o_cas(t_flags *l, unsigned long long a,
+						t_o_struc *z);
+void				sw_000(t_flags *l, int *i);
+int					qwerty(char **buf, t_flags **flag);
 
 #endif

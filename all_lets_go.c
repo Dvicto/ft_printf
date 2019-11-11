@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 16:07:36 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 20:23:55 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/11 18:46:58 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,20 @@ int					lets_go_o(va_list vl, t_flags **flag)
 	if ((*flag)->h == 1)
 	{
 		a = (unsigned short)va_arg(vl, unsigned);
-		return (sw_o_flag_h(a, *flag));
+		return (sw_o_flag_ll((unsigned long long)a, *flag));
 	}
 	if ((*flag)->h == 2)
 	{
 		b = (unsigned char)va_arg(vl, unsigned);
-		return (sw_o_flag_hh(b, *flag));
+		return (sw_o_flag_ll((unsigned long long)b, *flag));
 	}
 	if ((*flag)->l == 1)
-		return (sw_o_flag_l(va_arg(vl, unsigned long), *flag));
+	{
+		return (sw_o_flag_ll((unsigned long long)va_arg(vl,
+			unsigned long), *flag));
+	}
 	if ((*flag)->l == 2)
-		return (sw_o_flag_l(va_arg(vl, unsigned long), *flag));
+		return (sw_o_flag_ll(va_arg(vl, unsigned long long), *flag));
 	return (sw_o_flag_ll((unsigned)va_arg(vl, unsigned long long), *flag));
 }
 

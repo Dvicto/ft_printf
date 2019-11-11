@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:16:08 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 16:22:26 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/11 19:59:09 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ int					start_parce(va_list vl, char **format)
 	flag = newflags(&flag);
 	while (**format != 'd' && **format != 'i' && **format != 'o'
 		&& **format != 'u' && **format != 'x' && **format != '%'
-		&& **format != 'X' && **format != 'f'
+		&& **format != 'X' && **format != 'f' && **format != '\0'
 		&& **format != 'c' && **format != 's' && **format != 'p')
 	{
 		buf = ft_add_char(&buf, **format);
 		(*format)++;
 	}
+	if (**format == '\0')
+		return (qwerty(&buf, &flag));
 	buf = ft_add_char(&buf, **format);
 	(*format)++;
 	i = cont1_parce(vl, buf, &flag);

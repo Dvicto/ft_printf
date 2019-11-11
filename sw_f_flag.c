@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sw_f_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:48:48 by nsheev            #+#    #+#             */
-/*   Updated: 2019/11/08 16:26:32 by nsheev           ###   ########.fr       */
+/*   Updated: 2019/11/11 18:42:09 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			sw_if_minus(int len, t_flags *l, char **num, union common z)
+int			sw_if_minus(int len, t_flags *l, char **num, union u_common z)
 {
 	int i;
 
@@ -40,7 +40,7 @@ int			sw_if_minus(int len, t_flags *l, char **num, union common z)
 	return (i);
 }
 
-int			sw_if_zero(int len, t_flags *l, char **num, union common z)
+int			sw_if_zero(int len, t_flags *l, char **num, union u_common z)
 {
 	int i;
 
@@ -68,7 +68,7 @@ int			sw_if_zero(int len, t_flags *l, char **num, union common z)
 	return (i);
 }
 
-int			sw_if_else(int len, t_flags *l, char **num, union common z)
+int			sw_if_else(int len, t_flags *l, char **num, union u_common z)
 {
 	int i;
 
@@ -110,7 +110,7 @@ void		sw_del_ar(char ***num)
 
 int			sw_f_flag(double a, t_flags *l)
 {
-	union common	z;
+	union u_common	z;
 	char			**num;
 	int				i;
 	int				len;

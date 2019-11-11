@@ -6,7 +6,7 @@
 /*   By: dvictor <dvictor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:35:38 by dvictor           #+#    #+#             */
-/*   Updated: 2019/11/08 19:50:00 by dvictor          ###   ########.fr       */
+/*   Updated: 2019/11/11 17:27:43 by dvictor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		lets_go_fcsp(va_list vl, t_flags **flag, char spec)
 	if (spec == 's')
 		return (sw_s_flag(va_arg(vl, char*), *flag, 0, 0));
 	if (spec == 'p')
-		return (sw_p_flag(va_arg(vl, void*), *flag));
+		return (sw_p_flag(va_arg(vl, void*), *flag, 0, 0));
 	if (spec == 'c')
 		return (c_flag((char)va_arg(vl, int), *flag));
 	if (spec == 'f')
